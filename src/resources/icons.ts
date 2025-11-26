@@ -44,6 +44,7 @@ import { FaDiscord, FaGithub, FaLinkedin, FaX, FaThreads, FaInstagram, FaXTwitte
 import { TbBrandCSharp } from "react-icons/tb";
 import { CgCPlusPlus } from "react-icons/cg";
 import { BiSolidTShirt } from "react-icons/bi";
+import { IoIosPaper } from "react-icons/io";
 
 export const iconLibrary: Record<string, IconType> = {
   arrowUpRight: HiArrowUpRight,
@@ -92,6 +93,7 @@ export const iconLibrary: Record<string, IconType> = {
   substancedesigner: SiAdobe,
   marvelousdesigner: BiSolidTShirt,
   marmosettoolbag: SiRender,
+  resume: IoIosPaper,
 };
 
 export type IconLibrary = typeof iconLibrary;

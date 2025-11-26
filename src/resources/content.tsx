@@ -1,4 +1,3 @@
-import BrandLogo from "@/components/BrandLogo";
 import type {
   About,
   Blog,
@@ -63,6 +62,12 @@ const social: Social = [
     link: `mailto:${person.email}`,
     essential: true,
   },
+  {
+    name: "Resume",
+    icon: "resume",
+    link: "/resume/resume_AntonyNaumovic.pdf",
+    essential: true,
+  }
 ];
 
 const home: Home = {

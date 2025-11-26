@@ -1,4 +1,4 @@
-import { IconType } from "react-icons";
+import type { IconType } from "react-icons";
 
 import {
   HiArrowUpRight,
@@ -20,6 +20,7 @@ import {
   PiGridFourDuotone,
   PiBookBookmarkDuotone,
   PiImageDuotone,
+  PiBlueprint,
 } from "react-icons/pi";
 
 import {
@@ -27,9 +28,22 @@ import {
   SiNextdotjs,
   SiFigma,
   SiSupabase,
+  SiReact,
+  SiUnity,
+  SiUnrealengine,
+  SiCplusplus,
+  SiAdobelightroom,
+  SiAdobephotoshop,
+  SiAdobexd,
+  SiBlender,
+  SiAdobe,
+  SiRender,
 } from "react-icons/si";
 
 import { FaDiscord, FaGithub, FaLinkedin, FaX, FaThreads, FaInstagram, FaXTwitter, FaFacebook, FaPinterest, FaWhatsapp, FaReddit, FaTelegram, } from "react-icons/fa6";
+import { TbBrandCSharp } from "react-icons/tb";
+import { CgCPlusPlus } from "react-icons/cg";
+import { BiSolidTShirt } from "react-icons/bi";
 
 export const iconLibrary: Record<string, IconType> = {
   arrowUpRight: HiArrowUpRight,
@@ -64,6 +78,20 @@ export const iconLibrary: Record<string, IconType> = {
   reddit: FaReddit,
   telegram: FaTelegram,
   instagram: FaInstagram,
+  react: SiReact,
+  unity: SiUnity,
+  csharp: TbBrandCSharp,
+  cplusplus: SiCplusplus,
+  unrealengine: SiUnrealengine,
+  blueprint: PiBlueprint,
+  adobexd: SiAdobexd,
+  adobephotoshop: SiAdobephotoshop,
+  adobelightroom: SiAdobelightroom,
+  blender: SiBlender,
+  substancepainter: SiAdobe,
+  substancedesigner: SiAdobe,
+  marvelousdesigner: BiSolidTShirt,
+  marmosettoolbag: SiRender,
 };
 
 export type IconLibrary = typeof iconLibrary;

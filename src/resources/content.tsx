@@ -1,20 +1,30 @@
 import BrandLogo from "@/components/BrandLogo";
-import { About, Blog, Gallery, Home, Newsletter, Person, Social, Work } from "@/types";
+import type {
+  About,
+  Blog,
+  Gallery,
+  Home,
+  Newsletter,
+  Person,
+  Social,
+  Work,
+} from "@/types";
 import { Line, Logo, Row, Text } from "@once-ui-system/core";
 
 const person: Person = {
-  firstName: "Selene",
-  lastName: "Yu",
-  name: `Selene Yu`,
-  role: "Design Engineer",
+  firstName: "Antony",
+  lastName: "Naumovic",
+  name: "Antony Naumovic",
+  role: "UX and UI designer",
   avatar: "/images/avatar.jpg",
-  email: "example@gmail.com",
-  location: "Asia/Jakarta", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
-  languages: ["English", "Bahasa"], // optional: Leave the array empty if you don't want to display languages
+  email: "antonynaumovic@gmail.com",
+  location: "Europe/London", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
+  location_friendly: "London",
+  languages: [], // optional: Leave the array empty if you don't want to display languages
 };
 
 const newsletter: Newsletter = {
-  display: true,
+  display: false,
   title: <>Subscribe to {person.firstName}'s Newsletter</>,
   description: <>My weekly newsletter about creativity and engineering</>,
 };
@@ -26,26 +36,26 @@ const social: Social = [
   {
     name: "GitHub",
     icon: "github",
-    link: "https://github.com/once-ui-system",
+    link: "https://github.com/antonynaumovic",
     essential: true,
   },
   {
     name: "LinkedIn",
     icon: "linkedin",
-    link: "https://www.linkedin.com/company/once-ui/",
+    link: "https://www.linkedin.com/in/antonynaumovic/",
     essential: true,
   },
   {
     name: "Instagram",
     icon: "instagram",
-    link: "https://www.instagram.com/once_ui/",
+    link: "",
     essential: false,
   },
   {
     name: "Threads",
     icon: "threads",
-    link: "https://www.threads.com/@once_ui",
-    essential: true,
+    link: "",
+    essential: false,
   },
   {
     name: "Email",
@@ -61,9 +71,11 @@ const home: Home = {
   label: "Home",
   title: `${person.name}'s Portfolio`,
   description: `Portfolio website showcasing my work as a ${person.role}`,
-  headline: <>Building bridges between design and code</>,
+  headline: (
+    <>Human-centered design for games, apps, and interactive experiences</>
+  ),
   featured: {
-    display: true,
+    display: false,
     title: (
       <Row gap="12" vertical="center">
         <strong className="ml-4">Once UI</strong>{" "}
@@ -77,8 +89,8 @@ const home: Home = {
   },
   subline: (
     <>
-      I'm Selene, a design engineer at <BrandLogo />, where I craft intuitive
-      <br /> user experiences. After hours, I build my own projects.
+      I'm {person.firstName}, a {person.role} specialising in crafting
+      intuitive, engaging digital interfaces. Welcome to my portfolio!
     </>
   ),
 };
@@ -96,7 +108,7 @@ const about: About = {
     display: true,
   },
   calendar: {
-    display: true,
+    display: false,
     link: "https://cal.com",
   },
   intro: {
@@ -104,9 +116,11 @@ const about: About = {
     title: "Introduction",
     description: (
       <>
-        Selene is a Jakarta-based design engineer with a passion for transforming complex challenges
-        into simple, elegant design solutions. Her work spans digital interfaces, interactive
-        experiences, and the convergence of design and technology.
+        I am a {person.location_friendly}-based {person.role} 
+        {/* with
+        a passion for transforming complex challenges into simple, elegant
+        design solutions. Her work spans digital interfaces, interactive
+        experiences, and the convergence of design and technology. */}
       </>
     ),
   },
@@ -115,43 +129,32 @@ const about: About = {
     title: "Work Experience",
     experiences: [
       {
-        company: "FLY",
-        timeframe: "2022 - Present",
-        role: "Senior Design Engineer",
-        achievements: [
-          <>
-            Redesigned the UI/UX for the FLY platform, resulting in a 20% increase in user
-            engagement and 30% faster load times.
-          </>,
-          <>
-            Spearheaded the integration of AI tools into design workflows, enabling designers to
-            iterate 50% faster.
-          </>,
-        ],
+        company: "Secret Waterfall",
+        timeframe: "2020 - 2025",
+        role: "Art Lead",
+        achievements: [<></>, <></>],
         images: [
           // optional: leave the array empty if you don't want to display images
-          {
-            src: "/images/projects/project-01/cover-01.jpg",
-            alt: "Once UI Project",
-            width: 16,
-            height: 9,
-          },
+          // {
+          //   src: "/images/projects/project-01/cover-01.jpg",
+          //   alt: "Once UI Project",
+          //   width: 16,
+          //   height: 9,
+          // },
         ],
       },
       {
-        company: "Creativ3",
-        timeframe: "2018 - 2022",
-        role: "Lead Designer",
-        achievements: [
-          <>
-            Developed a design system that unified the brand across multiple platforms, improving
-            design consistency by 40%.
-          </>,
-          <>
-            Led a cross-functional team to launch a new product line, contributing to a 15% increase
-            in overall company revenue.
-          </>,
-        ],
+        company: "Tipping Point Solutions",
+        timeframe: "2023 (6 Month Contract)",
+        role: "3D Technical Director",
+        achievements: [<></>, <></>],
+        images: [],
+      },
+      {
+        company: "Interactive Schools",
+        timeframe: "2018 - 2020",
+        role: "Design Intern",
+        achievements: [<></>, <></>],
         images: [],
       },
     ],
@@ -161,12 +164,8 @@ const about: About = {
     title: "Studies",
     institutions: [
       {
-        name: "University of Jakarta",
-        description: <>Studied software engineering.</>,
-      },
-      {
-        name: "Build the Future",
-        description: <>Studied online marketing and personal branding.</>,
+        name: "Oxford Brookes University",
+        description: <>BSc (Hons) Computer Science - First Class Honours</>,
       },
     ],
   },
@@ -177,7 +176,7 @@ const about: About = {
       {
         title: "Figma",
         description: (
-          <>Able to prototype in Figma with Once UI with unnatural speed.</>
+          <>Able to prototype in Figma using token-based design systems.</>
         ),
         tags: [
           {
@@ -187,47 +186,137 @@ const about: About = {
         ],
         // optional: leave the array empty if you don't want to display images
         images: [
-          {
-            src: "/images/projects/project-01/cover-02.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-          {
-            src: "/images/projects/project-01/cover-03.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
+          // {
+          //   src: "/images/projects/project-01/cover-02.jpg",
+          //   alt: "Project image",
+          //   width: 16,
+          //   height: 9,
+          // },
+          // {
+          //   src: "/images/projects/project-01/cover-03.jpg",
+          //   alt: "Project image",
+          //   width: 16,
+          //   height: 9,
+          // },
         ],
       },
-      {
-        title: "Next.js",
+            {
+        title: "Adobe XD",
         description: (
-          <>Building next gen apps with Next.js + Once UI + Supabase.</>
+          <>Able to prototype in Adobe XD using token-based design systems.</>
         ),
         tags: [
           {
-            name: "JavaScript",
-            icon: "javascript",
-          },
-          {
-            name: "Next.js",
-            icon: "nextjs",
-          },
-          {
-            name: "Supabase",
-            icon: "supabase",
+            name: "Adobe XD",
+            icon: "adobexd",
           },
         ],
         // optional: leave the array empty if you don't want to display images
         images: [
+          // {
+          //   src: "/images/projects/project-01/cover-02.jpg",
+          //   alt: "Project image",
+          //   width: 16,
+          //   height: 9,
+          // },
+          // {
+          //   src: "/images/projects/project-01/cover-03.jpg",
+          //   alt: "Project image",
+          //   width: 16,
+          //   height: 9,
+          // },
+        ],
+      },
+      {
+        title: "React",
+        description: (
+          <>
+            Building scalable, reactive web applications with React, Next.js,
+            and JavaScript
+          </>
+        ),
+        tags: [
           {
-            src: "/images/projects/project-01/cover-04.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
+            name: "React",
+            icon: "react",
           },
+          { name: "Next.js",
+            icon: "nextjs",
+          },
+          {
+            name: "JavaScript",
+            icon: "javascript",
+          },
+        ],
+        // optional: leave the array empty if you don't want to display images
+        images: [
+          // {
+          //   src: "/images/projects/project-01/cover-04.jpg",
+          //   alt: "Project image",
+          //   width: 16,
+          //   height: 9,
+          // },
+        ],
+      },
+      {
+        title: "Unity",
+        description: <></>,
+        tags: [
+          {
+            name: "Unity",
+            icon: "unity",
+          },
+          {
+            name: "C#",
+            icon: "csharp",
+          },
+        ],
+        images: [
+        ],
+      },
+            {
+        title: "Unreal Engine",
+        description: <></>,
+        tags: [
+          {
+            name: "Unreal Engine",
+            icon: "unrealengine",
+          },
+          {
+            name: "C++",
+            icon: "cplusplus",
+          },
+          { name: "Blueprint",
+            icon: "blueprint",
+          },
+
+        ],
+        images: [
+        ],
+      },
+            {
+        title: "3D",
+        description: <></>,
+        tags: [
+          {
+            name: "Blender",
+            icon: "blender",
+          },
+          {
+            name: "Substance Painter",
+            icon: "substancepainter",
+          },
+          { name: "Substance Designer",
+            icon: "substancedesigner",
+          },
+          { name: "Marvelous Designer",
+            icon: "marvelousdesigner",
+          },
+          { name: "Marmoset Toolbag",
+            icon: "marmosettoolbag",
+          },
+        ],
+        images: [
         ],
       },
     ],
@@ -235,9 +324,9 @@ const about: About = {
 };
 
 const blog: Blog = {
-  path: "/blog",
-  label: "Blog",
-  title: "Writing about design and tech...",
+  path: "/projects",
+  label: "Projects",
+  title: "Writing about personal projects and tools",
   description: `Read what ${person.name} has been up to recently`,
   // Create new blog posts by adding a new .mdx file to app/blog/posts
   // All posts will be listed on the /blog route
@@ -257,49 +346,48 @@ const gallery: Gallery = {
   label: "Gallery",
   title: `Photo gallery – ${person.name}`,
   description: `A photo collection by ${person.name}`,
-  // Images by https://lorant.one
   // These are placeholder images, replace with your own
   images: [
-    {
-      src: "/images/gallery/horizontal-1.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/vertical-4.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
-    {
-      src: "/images/gallery/horizontal-3.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/vertical-1.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
-    {
-      src: "/images/gallery/vertical-2.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
-    {
-      src: "/images/gallery/horizontal-2.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/horizontal-4.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/vertical-3.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
+    // {
+    //   src: "/images/gallery/horizontal-1.jpg",
+    //   alt: "image",
+    //   orientation: "horizontal",
+    // },
+    // {
+    //   src: "/images/gallery/vertical-4.jpg",
+    //   alt: "image",
+    //   orientation: "vertical",
+    // },
+    // {
+    //   src: "/images/gallery/horizontal-3.jpg",
+    //   alt: "image",
+    //   orientation: "horizontal",
+    // },
+    // {
+    //   src: "/images/gallery/vertical-1.jpg",
+    //   alt: "image",
+    //   orientation: "vertical",
+    // },
+    // {
+    //   src: "/images/gallery/vertical-2.jpg",
+    //   alt: "image",
+    //   orientation: "vertical",
+    // },
+    // {
+    //   src: "/images/gallery/horizontal-2.jpg",
+    //   alt: "image",
+    //   orientation: "horizontal",
+    // },
+    // {
+    //   src: "/images/gallery/horizontal-4.jpg",
+    //   alt: "image",
+    //   orientation: "horizontal",
+    // },
+    // {
+    //   src: "/images/gallery/vertical-3.jpg",
+    //   alt: "image",
+    //   orientation: "vertical",
+    // },
   ],
 };
 

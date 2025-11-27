@@ -65,7 +65,7 @@ const social: Social = [
   {
     name: "Resume",
     icon: "resume",
-    link: "/resume/resume_AntonyNaumovic.pdf",
+    link: "/resume/Resume_AntonyNaumovic.pdf",
     essential: true,
   }
 ];

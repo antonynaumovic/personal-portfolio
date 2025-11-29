@@ -21,20 +21,28 @@
     "lint-staged": "^16.1.5",
     "next": "^16.0.1",
     "next-mdx-remote": "^5.0.0",
+    "next-remote-refresh": "^0.10.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-icons": "^5.5.0",
+    "react-player": "^3.4.0",
+    "react-youtube": "^10.1.0",
     "sass": "^1.86.3",
     "transliteration": "^2.3.5"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
+    "@eslint/js": "^9.39.1",
     "@types/cookie": "^0.6.0",
     "@types/node": "^20.17.30",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.5",
-    "eslint": "^9.25.0",
+    "eslint": "^9.39.1",
+    "eslint-plugin-react": "^7.37.5",
+    "globals": "^16.5.0",
+    "jiti": "^2.6.1",
     "typescript": "^5.8.3",
+    "typescript-eslint": "^8.48.0",
     "tzdata": "^1.0.44"
   }
 }

@@ -1,6 +1,8 @@
-import { MDXRemote, MDXRemoteProps } from "next-mdx-remote/rsc";
-import React, { ReactNode } from "react";
+import { MDXRemote, type MDXRemoteProps } from "next-mdx-remote/rsc";
+import type React from "react";
+import type { ReactNode } from "react";
 import { slugify as transliterate } from "transliteration";
+import ReactPlayer from 'react-player'
 
 import {
   Heading,
@@ -8,8 +10,8 @@ import {
   Text,
   InlineCode,
   CodeBlock,
-  TextProps,
-  MediaProps,
+  type TextProps,
+  type MediaProps,
   Accordion,
   AccordionGroup,
   Table,
@@ -26,6 +28,7 @@ import {
   ListItem,
   Line,
 } from "@once-ui-system/core";
+import path from "node:path";
 
 type CustomLinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
   href: string;
@@ -71,7 +74,7 @@ function createImage({ alt, src, ...props }: MediaProps & { src: string }) {
       border="neutral-alpha-medium"
       sizes="(max-width: 960px) 100vw, 960px"
       alt={alt}
-      src={src}
+      src={path.resolve(src)}
       {...props}
     />
   );
@@ -82,7 +85,7 @@ function slugify(str: string): string {
   return transliterate(strWithAnd, {
     lowercase: true,
     separator: "-", // Replace spaces with -
-  }).replace(/\-\-+/g, "-"); // Replace multiple - with single -
+  }).replace(/--+/g, "-"); // Replace multiple - with single -
 }
 
 function createHeading(as: "h1" | "h2" | "h3" | "h4" | "h5" | "h6") {
@@ -123,7 +126,7 @@ function createInlineCode({ children }: { children: ReactNode }) {
 
 function createCodeBlock(props: any) {
   // For pre tags that contain code blocks
-  if (props.children && props.children.props && props.children.props.className) {
+  if (props.children?.props?.className) {
     const { className, children } = props.children.props;
 
     // Extract language from className (format: language-xxx)
@@ -162,6 +165,12 @@ function createListItem({ children }: { children: ReactNode }) {
   );
 }
 
+function createPlayerEmbed(videoId: string, ...props: any[]) {
+  return (
+    <ReactPlayer src={`https://www.youtube.com/watch?v=${videoId}`} {...props}/>
+  );
+}
+
 function createHR() {
   return (
     <Row fillWidth horizontal="center">
@@ -186,6 +195,7 @@ const components = {
   ul: createList as any,
   li: createListItem as any,
   hr: createHR as any,
+  video: createPlayerEmbed as any,
   Heading,
   Text,
   CodeBlock,

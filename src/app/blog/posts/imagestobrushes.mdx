@@ -1,0 +1,49 @@
+---
+title: "Images to Brushes Blender Add-on"
+summary: "Blender add-on that converts images into brush textures for digital sculpting."
+publishedAt: "2025-11-22"
+tag: "Tools, Python"
+---
+
+[GitHub Repository]("https://github.com/antonynaumovic/ImageToBrush" "Images to Brushes GitHub Repository")
+
+## Concept
+
+Whilst working on 3D sculpting projects in Blender, I often found myself needing to create custom brush textures from images to achieve specific surface details.
+To streamline this process, I developed a Blender add-on that automates the conversion of images into brush textures, and automatically assigns them to asset libraries.
+
+
+
+
+## Planning
+
+There were several key features I wanted to include in the add-on:
+- **Image Importing**: Allow users to easily import images from their file system.
+- **Auto Brush Bias**: Check the outer edges of the brush texture to adjust the brush's influence and ensure smooth transitions.
+- **Brush Setup**: Automatically create and configure brushes using the generated textures.
+- **Asset Library Integration**: Save the created brushes into Blender's asset libraries for easy access.
+- **User Interface**: Design a simple and intuitive UI within Blender for easy operation of the add-on.
+
+
+## Challenges
+
+Blender's asset library system presented some challenges, particularly in ensuring that the created brushes were correctly registered and accessible across different Blender projects.
+The API for asset libraries is not complete and required some workarounds to ensure brushes were saved and loaded correctly.
+I had to modify the asset catalogue files directly to ensure the catalogue paths were available for the user's specified paths.
+
+Also, I had to manually generate the brush preview thumbnails, as Blender does not automatically create these for custom brushes created via scripts.
+
+I experimented with setting up the tool to make a sculpt stroke onto a preview mesh to generate the thumbnail, but found that it caused potential crashes if the stroke's second position was outside of the mesh bounds.
+I worked on ways to alleviate this, by setting the viewport's view matrix to encompass the preview mesh, but since it was setting it before the context was refreshed,
+it would still apply the old view matrix and potentially cause crashes; the way around this would be to call for a manual UI refresh,
+however this goes against Blender's guidelines for add-on development. 
+
+
+## Outcome
+The Images to Brushes Blender add-on has significantly improved my workflow for creating custom brush textures. It automates the tedious process of converting images and setting up brushes, allowing me to focus more on the creative aspects of sculpting.
+The add-on is user-friendly and integrates seamlessly into Blender, making it a valuable tool for digital artists looking to enhance their sculpting capabilities.
+***
+Interface
+<img src="/images/projects/imagetobrush/interface.jpg" alt="Image to Brushes Interface" title="Images to Brushes Interface" width={"30%"}/>
+Created Brush Assets
+<img src="/images/projects/imagetobrush/createdbrushes.jpg" alt="Created Brush Assets" title="Created Brush Assets"/>

@@ -214,7 +214,7 @@ export default async function Blog({
         gap="16"
         m={{ hide: true }}
       >
-        <Row
+        {/* <Row
           gap="12"
           paddingLeft="2"
           vertical="center"
@@ -223,7 +223,7 @@ export default async function Blog({
         >
           <Icon name="document" size="xs" />
           On this page
-        </Row>
+        </Row> */}
         <HeadingNav fitHeight />
       </Column>
     </Row>

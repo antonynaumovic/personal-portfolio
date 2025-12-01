@@ -1,3 +1,4 @@
+import React from 'react';
 import { Column, Heading, Text } from "@once-ui-system/core";
 
 export default function NotFound() {

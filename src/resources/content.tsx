@@ -1,3 +1,4 @@
+import React from "react";
 import type {
   About,
   Blog,
@@ -8,7 +9,7 @@ import type {
   Social,
   Work,
 } from "@/types";
-import { Line, Logo, Row, Text } from "@once-ui-system/core";
+import { Line, Row, Text } from "@once-ui-system/core";
 
 const person: Person = {
   firstName: "Antony",
@@ -24,7 +25,7 @@ const person: Person = {
 
 const newsletter: Newsletter = {
   display: false,
-  title: <>Subscribe to {person.firstName}'s Newsletter</>,
+  title: <>Subscribe to {person.firstName}&apos;s Newsletter</>,
   description: <>My weekly newsletter about creativity and engineering</>,
 };
 
@@ -83,18 +84,18 @@ const home: Home = {
     display: true,
     title: (
       <Row gap="12" vertical="center">
-        <strong className="ml-4">Conectado</strong>{" "}
+        <strong className="ml-4">Leviathan</strong>{" "}
         <Line background="brand-alpha-strong" vert height="20" />
         <Text marginRight="4" onBackground="brand-medium">
           Featured work
         </Text>
       </Row>
     ),
-    href: "/work/conectado",
+    href: "/work/leviathan",
   },
   subline: (
     <>
-      I'm {person.firstName}, a {person.role} specialising in crafting
+      I&apos;m {person.firstName}, a {person.role} specialising in crafting
       intuitive, engaging digital interfaces. Welcome to my portfolio!
     </>
   ),

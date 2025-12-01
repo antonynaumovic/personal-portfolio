@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { Card, Column, Media, Row, Avatar, Text } from "@once-ui-system/core";
 import { formatDate } from "@/utils/formatDate";
 import { person } from "@/resources";
@@ -44,9 +45,9 @@ export default function Post({ post, thumbnail, direction }: PostProps) {
               <Avatar src={person.avatar} size="s" />
               <Text variant="label-default-s">{person.name}</Text>
             </Row>
-            <Text variant="body-default-xs" onBackground="neutral-weak">
+            {/* <Text variant="body-default-xs" onBackground="neutral-weak">
               {formatDate(post.metadata.publishedAt, false)}
-            </Text>
+            </Text> */}
           </Row>
           <Text variant="heading-strong-l" wrap="balance">
             {post.metadata.title}

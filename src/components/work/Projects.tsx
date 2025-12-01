@@ -1,7 +1,7 @@
 import { getPosts } from "@/utils/utils";
 import { Column } from "@once-ui-system/core";
 import { ProjectCard } from "@/components";
-
+import React from "react";
 interface ProjectsProps {
   range?: [number, number?];
   exclude?: string[];

@@ -1,8 +1,9 @@
 import { MDXRemote, type MDXRemoteProps } from "next-mdx-remote/rsc";
-import type React from "react";
+import React from "react";
 import type { ReactNode } from "react";
 import { slugify as transliterate } from "transliteration";
-import ReactPlayer from 'react-player'
+import ReactPlayer from "react-player";
+import { YouTubeEmbed } from "@next/third-parties/google";
 
 import {
   Heading,
@@ -74,7 +75,7 @@ function createImage({ alt, src, ...props }: MediaProps & { src: string }) {
       border="neutral-alpha-medium"
       sizes="(max-width: 960px) 100vw, 960px"
       alt={alt}
-      src={path.resolve(src)}
+      src={src}
       {...props}
     />
   );
@@ -165,12 +166,6 @@ function createListItem({ children }: { children: ReactNode }) {
   );
 }
 
-function createPlayerEmbed(videoId: string, ...props: any[]) {
-  return (
-    <ReactPlayer src={`https://www.youtube.com/watch?v=${videoId}`} {...props}/>
-  );
-}
-
 function createHR() {
   return (
     <Row fillWidth horizontal="center">
@@ -195,7 +190,8 @@ const components = {
   ul: createList as any,
   li: createListItem as any,
   hr: createHR as any,
-  video: createPlayerEmbed as any,
+  ReactPlayer,
+  YouTubeEmbed,
   Heading,
   Text,
   CodeBlock,

@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Heading,
   Text,
@@ -124,9 +125,9 @@ export default function Home() {
         <Projects range={[1, 1]} />
       </RevealFx>
       <RevealFx translateY="16" delay={0.6}>
-      <Row fillWidth paddingRight="64">
-        <Line maxWidth={48} />
-      </Row>
+        <Row fillWidth paddingRight="64">
+          <Line maxWidth={48} />
+        </Row>
       </RevealFx>
       <RevealFx translateY="16" delay={0.9}>
         <Projects range={[2]} />

@@ -1,3 +1,4 @@
+import React from "react";
 import { getPosts } from "@/utils/utils";
 import { Grid } from "@once-ui-system/core";
 import Post from "./Post";

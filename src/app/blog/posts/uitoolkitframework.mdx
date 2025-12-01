@@ -1,0 +1,65 @@
+---
+title: "UI Toolkit Framework"
+summary: "UI Toolkit Framework for building scalable and maintainable user interfaces in Unity."
+publishedAt: "2025-11-14"
+tag: "Unity, UI Toolkit"
+---
+
+## Concept
+I developed a comprehensive UI Toolkit Framework using Unity's UI Toolkit to streamline the creation of
+scalable and maintainable user interfaces for various projects.
+This framework leverages the power of UI Toolkit's Block Element Modifier (BEM) and
+USS styling to provide a flexible and efficient way to build UIs.
+
+I focused on creating reusable components, consistent styling, and a modular architecture
+that allows for easy customisation and extension.
+
+It uses concepts similar to popular web development frameworks like Bootstrap and Tailwind CSS,
+but is tailored specifically for Unity's UI Toolkit. It implements utility classes to facilitate
+rapid UI development and ensure a consistent look and feel across different screens and devices.
+
+It also includes a set of text and container spacing utilities to help maintain visual hierarchy
+and readability. The text and container spacing utilities provide predefined classes for margins,
+padding, and font sizes, making it easy to apply consistent spacing throughout the UI.
+It is based off of the same principles as [LiftKit](https://www.chainlift.io/liftkit "LiftKit Website"),
+a web framework for hierarchical UI spacing and layout design. The framework utilises a phi-based
+scaling system to ensure harmonious and visually appealing spacing ratios. 
+
+## Usage
+The UI Toolkit Framework can be easily integrated into Unity projects by importing the framework package.
+Developers can then use the provided USS classes and components to build UIs quickly and efficiently.
+
+There are utility classes for common UI elements such as buttons, input fields, cards, and modals,
+as well as layout components like grids and flex containers. The framework also includes support for theming through
+BEM modifiers, allowing developers to create custom themes that can be applied consistently across the UI.
+
+
+## Figma to Unity Workflow
+To facilitate the design-to-development workflow, Figma can be set up to utilise the same 
+underlying maths principles as the UI Toolkit Framework. The base of the system is built off of
+the medium text size, which is set to 14px by default. From there, all other text sizes and spacing
+are derived using a scaling factor based on the golden ratio (approximately 1.618). This ensures that all elements maintain a harmonious relationship
+with each other, creating a visually appealing and balanced design. 
+To get the smaller sizes, you divide the previous element by phi,
+so for medium to small, it's 14 / 1.618 = ~8.66px (rounded to 9px).
+For larger sizes, you multiply by phi,
+so medium to large is 14 * 1.618 = ~22.65px (rounded to 23px), and so on.
+
+
+
+## Tools
+- **Unity** - Game engine used to develop the UI Toolkit Framework.
+- **UI Toolkit** - Unity's UI framework for building user interfaces.
+- **Figma** - Design tool used to create UI designs and prototypes.
+
+## Outcome
+The UI Toolkit Framework has been successfully implemented in [Leviathan](/work/leviathan "Leviathan write-up"),
+providing a robust and flexible solution for building user interfaces in Unity.
+It has significantly improved the efficiency of UI development and helped me rapidly prototype and iterate on UI designs.
+***
+Framework Testing
+![Framework Testing](/images/projects/uitoolkitframework/frameworktest.jpg "Framework Testing")
+Framework Text Classes
+![Framework Text Classes](/images/projects/uitoolkitframework/frameworktext.jpg "Framework Text Classes")
+Framework Flex Classes
+![Framework Flex Classes](/images/projects/uitoolkitframework/frameworkflex.jpg "Framework Flex Classes")

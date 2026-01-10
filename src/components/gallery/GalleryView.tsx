@@ -1,5 +1,5 @@
 "use client";
-
+import React from "react";
 import { Media, MasonryGrid } from "@once-ui-system/core";
 import { gallery } from "@/resources";
 
@@ -13,6 +13,7 @@ export default function GalleryView() {
           sizes="(max-width: 560px) 100vw, 50vw"
           key={index}
           radius="m"
+          unoptimized
           aspectRatio={image.orientation === "horizontal" ? "16 / 9" : "3 / 4"}
           src={image.src}
           alt={image.alt}

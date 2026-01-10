@@ -114,14 +114,14 @@ export default async function Blog({
             <SmartLink href="/blog">
               <Text variant="label-strong-m">Blog</Text>
             </SmartLink>
-            <Text
+            {/* <Text
               variant="body-default-xs"
               onBackground="neutral-weak"
               marginBottom="12"
             >
               {post.metadata.publishedAt &&
                 formatDate(post.metadata.publishedAt)}
-            </Text>
+            </Text> */}
             <Heading variant="display-strong-m">{post.metadata.title}</Heading>
             {post.metadata.subtitle && (
               <Text

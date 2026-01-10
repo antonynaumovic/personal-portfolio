@@ -16,6 +16,11 @@ const nextConfig = {
         hostname: "www.google.com",
         pathname: "**",
       },
+      {
+        protocol: "https",
+        hostname: "fk8c5b0nfso0dhzm.public.blob.vercel-storage.com",
+        pathname: "/**",
+      },
     ],
   },
   sassOptions: {

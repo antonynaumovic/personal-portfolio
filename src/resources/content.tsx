@@ -15,7 +15,7 @@ const person: Person = {
   firstName: "Antony",
   lastName: "Naumovic",
   name: "Antony Naumovic",
-  role: "UX and UI designer",
+  role: "Technical Artist",
   avatar: "/images/avatar.jpg",
   email: "antonynaumovic@gmail.com",
   location: "Europe/London", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
@@ -64,9 +64,9 @@ const social: Social = [
     essential: true,
   },
   {
-    name: "Resume",
+    name: "CV",
     icon: "resume",
-    link: "/resume/Resume_AntonyNaumovic.pdf",
+    link: "https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/CV/CV_AntonyNaumovic.pdf",
     essential: true,
   },
 ];
@@ -77,9 +77,7 @@ const home: Home = {
   label: "Home",
   title: `${person.name}'s Portfolio`,
   description: `Portfolio website showcasing my work as a ${person.role}`,
-  headline: (
-    <>Human-centered design for games, apps, and interactive experiences</>
-  ),
+  headline: <>Bridging the worlds of Art and Tech</>,
   featured: {
     display: true,
     title: (
@@ -95,8 +93,8 @@ const home: Home = {
   },
   subline: (
     <>
-      I&apos;m {person.firstName}, a {person.role} specialising in crafting
-      intuitive, engaging digital interfaces. Welcome to my portfolio!
+      I&apos;m {person.firstName}, a {person.role} crafting the pipelines and
+      realtime systems that bring worlds to life.
     </>
   ),
 };
@@ -123,7 +121,7 @@ const about: About = {
     description: (
       <>
         I am a {person.role} near London, UK with a strong background in design
-        and a passion for creating user-centric digital experiences.
+        and a passion for creating tools and shaders.
         {/* with
         a passion for transforming complex challenges into simple, elegant
         design solutions. Her work spans digital interfaces, interactive
@@ -141,7 +139,7 @@ const about: About = {
         role: "Art Lead",
         achievements: [
           <>
-            Directed art vision and UI/UX design for an ambitious live service
+            Directed art vision and technical art for an ambitious live service
             multiplayer PvPvE extraction shooter within Unity.
           </>,
           <>
@@ -150,27 +148,39 @@ const about: About = {
             environment.
           </>,
           <>
-            Engineered a component-driven UI Toolkit framework, streamlining
-            development and future-proofing the interface.
-          </>,
-
-          <>
-            Designed the UI base in Adobe XD, migrated designs into Figma, and
-            authored team-wide design specifications.
+            Engineered custom shaders, lighting behaviours, and custom HDRP
+            render passes to improve visual quality and runtime performance.
           </>,
           <>
-            Implemented the original UI in uGUI, later rebuilding the system in
-            UI Toolkit for scalability.
+            Built a component-driven UI Toolkit framework to streamline realtime
+            interface development and reduce iteration time.
           </>,
           <>
-            Co-ran user testing sessions, iterating on feedback to refine
-            usability and improve player experience.
+            Developed pipeline tools for asset ingestion, environment workflows,
+            and animation integration.
+          </>,
+          <>
+            Established profiling workflows for GPU, CPU, and memory debugging
+            across HDRP.
           </>,
           <>
             Developed pipeline tools for art assets and animation integration,
             accelerating iteration cycles.
           </>,
+          <>
+            Collaborated closely with engineering to maintain stable builds,
+            efficient pipelines, and scalable content production.
+          </>,
         ],
+      },
+      {
+        company: "Conectado Inc.",
+        timeframe: "2023 - 2025",
+        role: "3D Technical Director",
+        achievements: [
+          <> Continuation of contract role from Tipping Point Solutions.</>,
+        ],
+        images: [],
       },
       {
         company: "Tipping Point Solutions",
@@ -183,18 +193,12 @@ const about: About = {
             accessibility.
           </>,
           <>
-            Designed the UI and website from the ground up in Adobe XD, creating
-            wireframes, HUD, and user flows for both website and in-game
-            experiences.
+            Engineered a mixed lighting pipeline combining baked coloured
+            shadows with realtime dynamic shadows
           </>,
           <>
-            Built a simple yet extensible UI, integrating features like
-            note-taking and inventory systems to enhance ease of use for
-            educators and students.
-          </>,
-          <>
-            Designed the admin interface and safety tools (audit log, reporting,
-            incident tracking) to support in-game safeguarding
+            Developed VFX, animation assets, and realtime shaders, maintaining
+            consistency across the platform
           </>,
           <>
             Engineered the website in React, delivering all frontend work and a
@@ -205,12 +209,16 @@ const about: About = {
             teachers and students, enhancing collaborative learning
           </>,
           <>
-            Ensured the game was optimized for pixel streaming servers,
-            balancing performance with high-quality visuals
+            Optimised the entire experience for pixel streaming, balancing
+            fidelity with strict performance constraints
           </>,
           <>
             Created digital twins in MetaHuman, VFX, and advertisement animation
             assets
+          </>,
+          <>
+            Designed the admin interface and safety tools (audit log, reporting,
+            incident tracking) to support in-game safeguarding
           </>,
         ],
         images: [],
@@ -420,46 +428,26 @@ const gallery: Gallery = {
   description: `A photo collection by ${person.name}`,
   // These are placeholder images, replace with your own
   images: [
-    // {
-    //   src: "/images/gallery/horizontal-1.jpg",
-    //   alt: "image",
-    //   orientation: "horizontal",
-    // },
-    // {
-    //   src: "/images/gallery/vertical-4.jpg",
-    //   alt: "image",
-    //   orientation: "vertical",
-    // },
-    // {
-    //   src: "/images/gallery/horizontal-3.jpg",
-    //   alt: "image",
-    //   orientation: "horizontal",
-    // },
-    // {
-    //   src: "/images/gallery/vertical-1.jpg",
-    //   alt: "image",
-    //   orientation: "vertical",
-    // },
-    // {
-    //   src: "/images/gallery/vertical-2.jpg",
-    //   alt: "image",
-    //   orientation: "vertical",
-    // },
-    // {
-    //   src: "/images/gallery/horizontal-2.jpg",
-    //   alt: "image",
-    //   orientation: "horizontal",
-    // },
-    // {
-    //   src: "/images/gallery/horizontal-4.jpg",
-    //   alt: "image",
-    //   orientation: "horizontal",
-    // },
-    // {
-    //   src: "/images/gallery/vertical-3.jpg",
-    //   alt: "image",
-    //   orientation: "vertical",
-    // },
+    {
+      src: "https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/gallery/render-do-not-enter.jpg",
+      alt: "image",
+      orientation: "horizontal",
+    },
+    {
+      src: "https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/gallery/render-crt-2.jpg",
+      alt: "image",
+      orientation: "horizontal",
+    },
+    {
+      src: "https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/gallery/render-orbit-3.jpg",
+      alt: "image",
+      orientation: "horizontal",
+    },
+    {
+      src: "https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/gallery/render-robud-1.jpg",
+      alt: "image",
+      orientation: "horizontal",
+    },
   ],
 };
 

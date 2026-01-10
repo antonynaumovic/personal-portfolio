@@ -28,8 +28,9 @@ import {
   List,
   ListItem,
   Line,
+  Swiper,
+  Scroller,
 } from "@once-ui-system/core";
-import path from "node:path";
 
 type CustomLinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
   href: string;
@@ -60,6 +61,50 @@ function CustomLink({ href, children, ...props }: CustomLinkProps) {
   );
 }
 
+function ExternalLink({
+  href,
+  ...props
+}: CustomLinkProps & { title: string; fillWidth?: boolean }) {
+  if (props.fillWidth) {
+    return (
+      <SmartLink
+        href={href}
+        {...props}
+        target="_blank"
+        rel="noopener noreferrer"
+        fillWidth={props.fillWidth}
+      >
+        <Row
+          fillWidth={props.fillWidth}
+          background="surface"
+          border="surface"
+          radius="l"
+          padding="16"
+          horizontal="between"
+          vertical="center"
+        >
+          <Row vertical="center">
+            <Icon name="link" paddingRight="8" />
+            <Text>{props.title}</Text>
+          </Row>
+          <Icon name="chevronRight" />
+        </Row>
+      </SmartLink>
+    );
+  }
+  return (
+    <SmartLink
+      href={href}
+      {...props}
+      target="_blank"
+      rel="noopener noreferrer"
+      prefixIcon="link"
+    >
+      {props.title}
+    </SmartLink>
+  );
+}
+
 function createImage({ alt, src, ...props }: MediaProps & { src: string }) {
   if (!src) {
     console.error("Media requires a valid 'src' property.");
@@ -74,6 +119,28 @@ function createImage({ alt, src, ...props }: MediaProps & { src: string }) {
       radius="m"
       border="neutral-alpha-medium"
       sizes="(max-width: 960px) 100vw, 960px"
+      alt={alt}
+      src={src}
+      {...props}
+    />
+  );
+}
+
+function createMedia({ alt, src, ...props }: MediaProps & { src: string }) {
+  if (!src) {
+    console.error("Media requires a valid 'src' property.");
+    return null;
+  }
+
+  return (
+    <Media
+      marginTop="8"
+      marginBottom="16"
+      enlarge
+      radius="m"
+      border="neutral-alpha-medium"
+      sizes="(max-width: 960px) 100vw, 960px"
+      unoptimized
       alt={alt}
       src={src}
       {...props}
@@ -96,7 +163,13 @@ function createHeading(as: "h1" | "h2" | "h3" | "h4" | "h5" | "h6") {
   }: Omit<React.ComponentProps<typeof HeadingLink>, "as" | "id">) => {
     const slug = slugify(children as string);
     return (
-      <HeadingLink marginTop="24" marginBottom="12" as={as} id={slug} {...props}>
+      <HeadingLink
+        marginTop="24"
+        marginBottom="12"
+        as={as}
+        id={slug}
+        {...props}
+      >
         {children}
       </HeadingLink>
     );
@@ -207,7 +280,11 @@ const components = {
   Column,
   Icon,
   Media,
+  M: createMedia as any,
+  ExternalLink: ExternalLink as any,
   SmartLink,
+  Swiper,
+  Scroller,
 };
 
 type CustomMDXProps = MDXRemoteProps & {
@@ -215,5 +292,10 @@ type CustomMDXProps = MDXRemoteProps & {
 };
 
 export function CustomMDX(props: CustomMDXProps) {
-  return <MDXRemote {...props} components={{ ...components, ...(props.components || {}) }} />;
+  return (
+    <MDXRemote
+      {...props}
+      components={{ ...components, ...(props.components || {}) }}
+    />
+  );
 }

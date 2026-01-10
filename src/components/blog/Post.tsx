@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Card, Column, Media, Row, Avatar, Text } from "@once-ui-system/core";
+import { Card, Column, Media, Row, Avatar, Text, AvatarGroup } from "@once-ui-system/core";
 import { formatDate } from "@/utils/formatDate";
 import { person } from "@/resources";
 
@@ -12,6 +12,19 @@ interface PostProps {
 }
 
 export default function Post({ post, thumbnail, direction }: PostProps) {
+  const avatars =
+    post.metadata.team?.map((person: { avatar: any; }) => ({
+      src: person.avatar,
+    })) || [];
+
+  const names = post.metadata.team?.map((person: { name: any; }) => ({
+    name: person.name,
+  })) || [];
+
+  const nameString = names.map((n: { name: string; }) => n.name).join(", ");
+
+  const hasTeam = post.metadata.team && post.metadata.team.length > 0;
+
   return (
     <Card
       fillWidth
@@ -36,14 +49,19 @@ export default function Post({ post, thumbnail, direction }: PostProps) {
           src={post.metadata.image}
           alt={"Thumbnail of " + post.metadata.title}
           aspectRatio="16 / 9"
+          unoptimized
         />
       )}
       <Row fillWidth>
         <Column maxWidth={28} paddingY="24" paddingX="l" gap="20" vertical="center">
           <Row gap="24" vertical="center">
             <Row vertical="center" gap="16">
-              <Avatar src={person.avatar} size="s" />
-              <Text variant="label-default-s">{person.name}</Text>
+              {hasTeam &&
+                <><AvatarGroup reverse avatars={avatars} size="s" /><Text variant="label-default-s">{nameString}</Text></>
+              }
+              {!hasTeam &&
+                <><Avatar src={person.avatar} size="s" /><Text variant="label-default-s">{person.name}</Text></>
+              }
             </Row>
             {/* <Text variant="body-default-xs" onBackground="neutral-weak">
               {formatDate(post.metadata.publishedAt, false)}

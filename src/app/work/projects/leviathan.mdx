@@ -91,11 +91,28 @@ this allows players to feel like their actions have a meaningful impact on the g
 Regular content updates, events, and challenges were planned to keep the gameplay fresh and exciting.
 
 
-## Tech Art Overview
+## Tech Art
 
-## UI Overview
+### Pipeline Tools
+To streamline the asset creation process, I developed a suite of pipeline tools using C# and Python that automated repetitive tasks and ensured consistency across the art team.
+These tools included:
+- **Asset Naming Conventions**: Automated naming conventions to ensure all assets adhered to project standards.
+- **Batch Exporting**: Tools to batch export assets from Blender and Substance Painter directly into Unity with the correct settings.
+- **Material Setup Scripts**: Scripts to automate the setup of materials in Unity HDRP, ensuring optimal performance and visual fidelity.
+- **LOD Generation**: Automated LOD (Level of Detail) generation to optimise performance without sacrificing visual quality.
+- **Animation Baking Tools**: Tools to bake animations inside of Unity to transfer attributes from Blender empties to weapons and hands in Unity.
 
-## UI Tools
+### Custom Shaders
+To achieve the desired visual style while maintaining performance, I created several custom shaders in Unity HDRP using Shader Graph and HLSL.
+These shaders included:
+- **Uber PBR Shader**: A shader that combined realistic lighting with optional effects such as POM (Parallax Occlusion Mapping), triplanar mapping, vertex painting, and RGB masks.
+- **First Person Shader**: A custom render pass shader that allows everything in the render layer to render on top of other layers to remove clipping and separate FOVs.
+- **Outline Shader**: A shader that added outlines to objects to improve visibility and readability in the game world.
+- **Custom Post-Processing Effects**: Developed custom post-processing effects to enhance the overall visual quality and atmosphere of the game.
+
+## UI/UX Design
+
+### UI Tools
 
 - **Unity HDRP**: Game engine and high-definition render pipeline for creating visually rich environments.
 - **UI Toolkit**: For building flexible and efficient user interfaces within Unity.

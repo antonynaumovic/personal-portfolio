@@ -13,6 +13,7 @@ import {
   CodeBlock,
   type TextProps,
   type MediaProps,
+  type Colors,
   Accordion,
   AccordionGroup,
   Table,
@@ -30,6 +31,7 @@ import {
   Line,
   Swiper,
   Scroller,
+  MasonryGrid,
 } from "@once-ui-system/core";
 
 type CustomLinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
@@ -126,7 +128,61 @@ function createImage({ alt, src, ...props }: MediaProps & { src: string }) {
   );
 }
 
-function createMedia({ alt, src, ...props }: MediaProps & { src: string }) {
+function createMedia({
+  alt,
+  src,
+  row = false,
+  ...props
+}: MediaProps & { src: string; row?: number | boolean }) {
+  if (!src) {
+    console.error("Media requires a valid 'src' property.");
+    return null;
+  }
+
+  return (
+    <>
+      {!row && (
+        <Media
+          marginTop="8"
+          marginBottom="16"
+          enlarge
+          radius="m"
+          border="neutral-alpha-medium"
+          sizes="(max-width: 960px) 100vw, 960px"
+          unoptimized
+          alt={alt}
+          src={src}
+          {...props}
+        />
+      )}
+      {row && (
+        <Row gap="16" center>
+          <Column>
+            <Media
+              marginTop="8"
+              marginBottom="16"
+              enlarge
+              radius="m"
+              border="neutral-alpha-medium"
+              sizes="(max-width: 960px) 100vw, 960px"
+              unoptimized
+              alt={alt}
+              src={src}
+              maxWidth={row === true ? undefined : row}
+              {...props}
+            />
+          </Column>
+        </Row>
+      )}
+    </>
+  );
+}
+
+function createGridMedia({
+  src,
+  orientation = "horizontal",
+  ...props
+}: MediaProps & { src: string; orientation?: "horizontal" | "vertical" }) {
   if (!src) {
     console.error("Media requires a valid 'src' property.");
     return null;
@@ -134,14 +190,13 @@ function createMedia({ alt, src, ...props }: MediaProps & { src: string }) {
 
   return (
     <Media
-      marginTop="8"
-      marginBottom="16"
       enlarge
+      sizes="(max-width: 560px) 100vw, 50vw"
       radius="m"
-      border="neutral-alpha-medium"
-      sizes="(max-width: 960px) 100vw, 960px"
       unoptimized
-      alt={alt}
+      aspectRatio={orientation === "horizontal" ? "16 / 9" : "3 / 4"}
+      key={src}
+      alt={props?.title + " Image"}
       src={src}
       {...props}
     />
@@ -188,6 +243,30 @@ function createParagraph({ children }: TextProps) {
       onBackground="neutral-medium"
       marginTop="8"
       marginBottom="12"
+    >
+      {children}
+    </Text>
+  );
+}
+
+function createHighlight({
+  children,
+  strength,
+}: TextProps & { strength?: number }) {
+  const strengthColourMap: Colors[] = [
+    "neutral-strong",
+    "brand-medium",
+    "brand-weak",
+  ];
+
+  return (
+    <Text
+      onBackground={
+        strengthColourMap[
+          Math.min(Math.max(strength ?? 0, 0), strengthColourMap.length - 1)
+        ]
+      }
+      weight="strong"
     >
       {children}
     </Text>
@@ -285,6 +364,9 @@ const components = {
   SmartLink,
   Swiper,
   Scroller,
+  Hi: createHighlight as any,
+  MasonryGrid,
+  MGM: createGridMedia as any,
 };
 
 type CustomMDXProps = MDXRemoteProps & {

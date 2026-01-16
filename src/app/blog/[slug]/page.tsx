@@ -14,6 +14,7 @@ import {
   Media,
   Line,
   AvatarGroup,
+  Tag,
 } from "@once-ui-system/core";
 import { baseURL, about, blog, person } from "@/resources";
 import { formatDate } from "@/utils/formatDate";
@@ -180,8 +181,47 @@ export default async function Blog({
               marginBottom="8"
             />
           )}
-          <Column as="article" maxWidth="s">
+          <Column
+            as="article"
+            maxWidth="s"
+            gap="20"
+            horizontal="center"
+            marginTop="40"
+          >
             <CustomMDX source={post.content} />
+            {post.metadata.skills && (
+              <Column fillWidth gap="l">
+                <Row wrap fillWidth gap="8" vertical="center">
+                  {post.metadata.skills.map((skill, index) => (
+                    <Tag
+                      key={`${skill.name}-${index}`}
+                      size="l"
+                      prefixIcon={skill.icon}
+                    >
+                      {skill.name}
+                    </Tag>
+                  ))}
+
+                  {/* {post.metadata.skills.map((skill, index) => (
+                    <Row key={`${skill}-${index}`} fillWidth gap="4">
+                      {skill.tags && skill.tags.length > 0 && (
+                        <>
+                          {skill.tags.map((tag, tagIndex) => (
+                            <Tag
+                              key={`${skill.title}-${tagIndex}`}
+                              size="l"
+                              prefixIcon={tag.icon}
+                            >
+                              {tag.name}
+                            </Tag>
+                          ))}
+                        </>
+                      )}
+                    </Row>
+                  ))} */}
+                </Row>
+              </Column>
+            )}
           </Column>
 
           <ShareSection
@@ -191,7 +231,7 @@ export default async function Blog({
 
           <Column fillWidth gap="40" horizontal="center" marginTop="40">
             <Line maxWidth="40" />
-            <Heading as="h2" variant="heading-strong-xl" marginBottom="24">
+            <Heading as="h1" variant="heading-strong-xl" marginBottom="24">
               Recent posts
             </Heading>
             <Posts

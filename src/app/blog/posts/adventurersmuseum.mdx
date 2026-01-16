@@ -1,0 +1,112 @@
+---
+title: "Adventurer's Museum"
+summary: "A DiNusty Empire group project"
+publishedAt: "2025-11-25"
+tag: "Unreal Engine, Shaders"
+priority: 15
+team:
+  - name: "Antony Naumovic"
+    role: "Artist"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/antonynaumovic/"
+  - name: "DiNusty Empire"
+    role: "Artist Group"
+    avatar: "/images/projects/museum/avatar-dinusty.jpg"
+    linkedIn: "https://empirecmd.com/empire-monthly-challenge/the-adventurers-museum"
+image: "https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/museum/xray-render3.jpg"
+skills:
+  - name: "Blender"
+    icon: "blender"
+  - name: "Unreal Engine"
+    icon: "unrealengine"
+  - name: "Lighting"
+    icon: "lighting"
+  - name: "Shaders"
+    icon: "shader"
+---
+
+## Concept
+
+Back in 2022, I went to the National Museum of Scotland in Edinburgh, where I saw a display of the history of X-Ray tubes. 
+The futuristic, yet vintage design of the tubes immediately caught my attention, inspiring me to create a 3D model of one. 
+This project was part of a group challenge organised by the DiNusty Empire, where we aimed to recreate various museum exhibits in 3D.
+<M src="https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/museum/xray-concept.jpg" alt="National Museum of Scotland X-Ray Tubes" title="National Museum of Scotland X-Ray Tubes" caption="National Museum of Scotland X-Ray Tubes"/>
+
+## Planning
+
+I started by gathering reference images of the X-Ray tubes from different angles to understand their structure and details. I looked through online resources and museum archives to find high-quality images that would help me accurately model the tubes.
+
+I also wanted to ensure that the models wouldn't take up too many texture sets, so I decided to use vertex paint to colour the glass, with a single glass material applied to all the tubes. This approach would allow me to maintain a consistent look while optimizing the texture usage. 
+For the rest of the materials, I planned to create reusable tiling materials that could be applied across multiple models in the project.
+
+### Challenges
+
+Finding detailed reference images was a challenge, as the tubes had intricate designs that were not fully visible in the photos I found. I had to delve into historical documents and abstract information from wikipedia and other sources to piece together the missing details.
+
+## Modelling
+Using my photo as a scale reference, I created a rough blockout of the tubes, focusing on their unique shapes and features. This allowed me to establish the overall proportions and layout of the model before diving into the finer details.
+
+I used a Sub-D modelling approach to create smooth, organic shapes for the glass and metal components of the tubes. I paid close attention to the curvature and thickness of the glass, as well as the intricate metal parts inside the tubes.
+
+<Row gap="16" center>
+  <Column>
+    <M src="https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/museum/xray-progress1.jpg" alt="X-Ray Tubes Final Models" title="X-Ray Tubes Final Models" caption="X-Ray Tubes Final Models" maxWidth={24}/>
+  </Column>
+</Row>
+
+
+## Shaders
+
+In the master material, I set up parameters for the glass, including:
+- World aligned textures for the base colour, ORM (Occlusion, Roughness, Metallic), and normal maps.
+- ORM adjustments to fine-tune the appearance of the material.
+- IOR (Index of Refraction).
+- Transmittance colour and thickness.
+- Vertex colour for tinting the glass.
+
+I experimented with different glass shader setups to achieve the desired look. I tested various combinations of refraction, translucency, and opacity settings to find the right balance that would give the glass a realistic appearance while still allowing the internal components of the tubes to be visible. 
+I used a fresnel falloff to control the IOR based on the viewing angle to reduce distortion when looking directly through the glass.
+
+In the beginning, the project used Unreal Engine's Default Lit pipeline for the glass shader. However, I later switched to <Hi>Substrate</Hi> transmission to achieve a more realistic glass effect.
+This allowed me to use fixed IOR values to create a more accurate representation of glass, enhancing the overall realism of the tubes.
+However, this change came with its own set of challenges, as substrate refraction requires thickness in the mesh to accurately simulate light passing through the material. I tried using the thin-surface shader, but it acted more like a lens rather than a thin wall of glass. 
+To address this, I added a solidify modifier to the glass mesh in Blender, ensuring that the thickness was consistent and realistic. This adjustment significantly improved the appearance of the glass, making it look more convincing and true to life.
+
+<M src="https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/museum/xray-shader1.jpg" alt="X-Ray Tubes Final Shader" title="X-Ray Tubes Final Shader" caption="X-Ray Tubes Final Shader"/>
+
+
+## Environment
+
+I recreated the shelving display from the original museum exhibit to showcase the X-Ray tubes. I also designed a couple of posters to accompany the display, providing context and information about the tubes.
+
+<M src="https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/museum/xray-viewport1.jpg" alt="X-Ray Tubes In Situ" title="In Situ Display" caption="In Situ Display"/>
+
+### Lighting and Rendering
+
+I found the original lighting setup to be less realistic than I had hoped, so I decided to create a new lighting setup.
+I used PBL (Physically Based Lighting) principles to ensure that the lighting in the scene accurately represented how light interacts with materials in the real world.
+A directional light with 120000 lux provided the main light source, with spotlights used to highlight specific areas of the display. I added IES profiles to the spotlights to create realistic light falloff and patterns.
+I also adjusted the master materials for the floor and velvet shaders to ensure they responded well to the new lighting setup.
+
+To create accurate scattering for the LED diffuser in the shelving, I set up a subsurface scattering shader with appropriate parameters to simulate the way light diffuses through the material and then created area lights behind the diffuser to simulate the LED lighting.
+
+## Tools
+I used <Hi>Blender</Hi> for modelling the X-Ray tubes and <Hi>Unreal Engine</Hi> for setting up the scene, materials, and lighting.
+I textured the models using <Hi>Substance Painter</Hi>, creating tiling materials that could be reused across multiple assets in the project.
+
+
+## Outcome
+
+<MasonryGrid columns={2} s={{ columns: 1 }} gap="16" fillWidth>
+  <MGM src="https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/museum/xray-render1.jpg" title="X-Ray Tubes Render 1" />
+  <MGM src="https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/museum/xray-vertical.jpg" title="X-Ray Tubes Render Vertical" orientation="vertical" />
+  <MGM src="https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/museum/xray-render5.jpg" title="X-Ray Tubes Render 5" />
+  <MGM src="https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/museum/xray-render3.jpg" title="X-Ray Tubes Render 3" />
+  <MGM src="https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/museum/xray-render9.jpg" title="X-Ray Tubes Render 3" orientation="vertical" />
+  <MGM src="https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/museum/xray-render6.jpg" title="X-Ray Tubes Render 6" />
+  <MGM src="https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/museum/xray-render7.jpg" title="X-Ray Tubes Render 7" />
+  <MGM src="https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/museum/xray-render2.jpg" title="X-Ray Tubes Render 2" />
+</MasonryGrid>
+
+
+<ExternalLink href="https://www.thedinustyempire.com/" title="DiNusty Empire" alt="DiNusty Empire Link" fillWidth/>

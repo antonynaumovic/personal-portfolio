@@ -9,10 +9,18 @@ type Team = {
   linkedIn: string;
 };
 
+type Skill = {
+  /** Skill title */
+  name: string;
+  icon?: string;
+};
+
 type Metadata = {
+  skills: Skill[];
   title: string;
   subtitle?: string;
   publishedAt: string;
+  priority: number;
   summary: string;
   image?: string;
   images: string[];
@@ -49,6 +57,8 @@ function readMDXFile(filePath: string) {
     tag: data.tag || [],
     team: data.team || [],
     link: data.link || "",
+    skills: data.skills || [],
+    priority: data.priority || 0
   };
 
   return { metadata, content };

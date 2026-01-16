@@ -20,7 +20,7 @@ import {
   PiGridFourDuotone,
   PiBookBookmarkDuotone,
   PiImageDuotone,
-  PiBlueprint,
+  PiBlueprintFill,
 } from "react-icons/pi";
 
 import {
@@ -41,16 +41,50 @@ import {
   SiTypescript,
 } from "react-icons/si";
 
-import { FaDiscord, FaGithub, FaLinkedin, FaX, FaThreads, FaInstagram, FaXTwitter, FaFacebook, FaPinterest, FaWhatsapp, FaReddit, FaTelegram, } from "react-icons/fa6";
+import {
+  FaDiscord,
+  FaGithub,
+  FaLinkedin,
+  FaX,
+  FaThreads,
+  FaInstagram,
+  FaXTwitter,
+  FaFacebook,
+  FaPinterest,
+  FaWhatsapp,
+  FaReddit,
+  FaTelegram,
+  FaArtstation,
+  FaPython,
+  FaLightbulb,
+  FaAt,
+  FaFileInvoice,
+  FaInbox,
+  FaFileSignature,
+  FaFileLines,
+  FaBrush,
+  FaBuffer,
+  FaDiagramProject,
+  FaConfluence,
+  FaJira,
+  FaDiceD20,
+  FaDroplet,
+  FaDrawPolygon,
+  FaExplosion,
+  FaShareNodes,
+  FaTrowelBricks,
+  FaGaugeHigh,
+  FaShirt 
+
+} from "react-icons/fa6";
 import { TbBrandCSharp } from "react-icons/tb";
-import { CgCPlusPlus } from "react-icons/cg";
-import { BiSolidTShirt } from "react-icons/bi";
 import { IoIosPaper } from "react-icons/io";
+import { GiStoneSphere, GiMonkey  } from "react-icons/gi";
 
 export const iconLibrary: Record<string, IconType> = {
   arrowUpRight: HiArrowUpRight,
   arrowRight: HiArrowRight,
-  email: HiEnvelope,
+  email: FaAt,
   globe: HiOutlineGlobeAsiaAustralia,
   person: PiUserCircleDuotone,
   grid: PiGridFourDuotone,
@@ -64,6 +98,7 @@ export const iconLibrary: Record<string, IconType> = {
   eyeOff: HiOutlineEyeSlash,
   github: FaGithub,
   linkedin: FaLinkedin,
+  artstation: FaArtstation,
   x: FaX,
   twitter: FaXTwitter,
   threads: FaThreads,
@@ -85,17 +120,28 @@ export const iconLibrary: Record<string, IconType> = {
   csharp: TbBrandCSharp,
   cplusplus: SiCplusplus,
   unrealengine: SiUnrealengine,
-  blueprint: PiBlueprint,
+  blueprint: PiBlueprintFill ,
   adobexd: SiAdobexd,
   adobephotoshop: SiAdobephotoshop,
   adobelightroom: SiAdobelightroom,
   blender: SiBlender,
   substancepainter: SiAdobe,
   substancedesigner: SiAdobe,
-  marvelousdesigner: BiSolidTShirt,
-  marmosettoolbag: SiRender,
-  resume: IoIosPaper,
+  marvelousdesigner: FaShirt,
+  marmosettoolbag: GiMonkey,
+  resume: FaFileLines,
   typescript: SiTypescript,
+  python: FaPython,
+  shader: GiStoneSphere,
+  lighting: FaLightbulb,
+  brush: FaBrush,
+  stack: FaBuffer,
+  profiler: FaGaugeHigh,
+  shadergraph: FaDiagramProject,
+  vfxgraph: FaExplosion,
+  jira: FaJira,
+  confluence: FaConfluence,
+
 };
 
 export type IconLibrary = typeof iconLibrary;

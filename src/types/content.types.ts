@@ -1,5 +1,6 @@
 import type { IconName } from "@/resources/icons";
 import type { zones } from "tzdata";
+import React from "react";
 
 /**
  * IANA time zone string (e.g., 'Asia/Calcutta', 'Europe/Vienna').
@@ -82,6 +83,8 @@ export interface BasePageConfig {
   description: string;
   /** OG Image should be put inside `public/images` folder */
   image?: `/images/${string}` | string;
+
+  categoryPriority?: string[];
 }
 
 /**
@@ -217,13 +220,13 @@ export interface About extends BasePageConfig {
  * Blog page configuration.
  * @description Configuration for the Blog page, including metadata and navigation label.
  */
-export interface Blog extends BasePageConfig {}
+export type Blog = BasePageConfig
 
 /**
  * Work/projects page configuration.
  * @description Configuration for the Work/Projects page, including metadata and navigation label.
  */
-export interface Work extends BasePageConfig {}
+export type Work = BasePageConfig
 
 /**
  * Gallery page configuration.
@@ -238,5 +241,9 @@ export interface Gallery extends BasePageConfig {
     alt: string;
     /** Image orientation (horizontal/vertical) */
     orientation: string;
+    /** Categories associated with the image */
+    category: string;
+
+    caption?: string;
   }>;
 }

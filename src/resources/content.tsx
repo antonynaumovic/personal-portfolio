@@ -64,6 +64,12 @@ const social: Social = [
     essential: true,
   },
   {
+    name: "ArtStation",
+    icon: "artstation",
+    link: "https://www.artstation.com/antonynaumovic",
+    essential: true,
+  },
+  {
     name: "CV",
     icon: "resume",
     link: "https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/CV/CV_AntonyNaumovic.pdf",
@@ -250,7 +256,7 @@ const about: About = {
     ],
   },
   studies: {
-    display: true, // set to false to hide this section
+    display: true,
     title: "Studies",
     institutions: [
       {
@@ -260,96 +266,9 @@ const about: About = {
     ],
   },
   technical: {
-    display: true, // set to false to hide this section
+    display: true,
     title: "Technical skills",
     skills: [
-      {
-        title: "Figma",
-        description: (
-          <>Able to prototype in Figma using token-based design systems.</>
-        ),
-        tags: [
-          {
-            name: "Figma",
-            icon: "figma",
-          },
-        ],
-        // optional: leave the array empty if you don't want to display images
-        images: [
-          // {
-          //   src: "/images/projects/project-01/cover-02.jpg",
-          //   alt: "Project image",
-          //   width: 16,
-          //   height: 9,
-          // },
-          // {
-          //   src: "/images/projects/project-01/cover-03.jpg",
-          //   alt: "Project image",
-          //   width: 16,
-          //   height: 9,
-          // },
-        ],
-      },
-      {
-        title: "Adobe XD",
-        description: (
-          <>Able to prototype in Adobe XD using token-based design systems.</>
-        ),
-        tags: [
-          {
-            name: "Adobe XD",
-            icon: "adobexd",
-          },
-        ],
-        // optional: leave the array empty if you don't want to display images
-        images: [
-          // {
-          //   src: "/images/projects/project-01/cover-02.jpg",
-          //   alt: "Project image",
-          //   width: 16,
-          //   height: 9,
-          // },
-          // {
-          //   src: "/images/projects/project-01/cover-03.jpg",
-          //   alt: "Project image",
-          //   width: 16,
-          //   height: 9,
-          // },
-        ],
-      },
-      {
-        title: "React",
-        description: (
-          <>
-            Building scalable, reactive web applications with React, Next.js,
-            and JavaScript
-          </>
-        ),
-        tags: [
-          {
-            name: "React",
-            icon: "react",
-          },
-          { name: "Next.js", icon: "nextjs" },
-          {
-            name: "JavaScript",
-            icon: "javascript",
-          },
-          {
-            name: "TypeScript",
-            icon: "typescript",
-          },
-        ],
-        // optional: leave the array empty if you don't want to display images
-        images: [
-          // {
-          //   src: "/images/projects/project-01/cover-04.jpg",
-          //   alt: "Project image",
-          //   width: 16,
-          //   height: 9,
-          // },
-        ],
-      },
       {
         title: "Unity",
         description: <></>,
@@ -362,6 +281,9 @@ const about: About = {
             name: "C#",
             icon: "csharp",
           },
+          { name: "Shader Graph", icon: "stack" },
+          { name: "VFX Graph", icon: "vfxgraph" },
+          { name: "Profiler", icon: "profiler" },
         ],
         images: [],
       },
@@ -399,6 +321,89 @@ const about: About = {
         ],
         images: [],
       },
+      {
+        title: "Programming Languages",
+        description: <></>,
+        tags: [
+          { name: "Python", icon: "python" },
+          { name: "C#", icon: "csharp" },
+          { name: "C++", icon: "cplusplus" },
+          { name: "JavaScript", icon: "javascript" },
+          { name: "TypeScript", icon: "typescript" },
+        ],
+        images: [],
+      },
+      {
+        title: "Administrative Tools",
+        description: (
+          <>
+            Experienced with project management and collaboration tools to
+            streamline workflows.
+          </>
+        ),
+        tags: [
+          { name: "Jira", icon: "jira" },
+          { name: "Confluence", icon: "confluence" },
+        ],
+        images: [],
+      },
+      {
+        title: "Responsive Design & Prototyping",
+        description: (
+          <>
+            Able to prototype in Figma and XD using token-based design systems.
+          </>
+        ),
+        tags: [
+          {
+            name: "Figma",
+            icon: "figma",
+          },
+          {
+            name: "Adobe XD",
+            icon: "adobexd",
+          },
+        ],
+
+        images: [
+          // {
+          //   src: "/images/projects/project-01/cover-02.jpg",
+          //   alt: "Project image",
+          //   width: 16,
+          //   height: 9,
+          // },
+          // {
+          //   src: "/images/projects/project-01/cover-03.jpg",
+          //   alt: "Project image",
+          //   width: 16,
+          //   height: 9,
+          // },
+        ],
+      },
+      {
+        title: "Web",
+        description: (
+          <>
+            Building scalable, reactive web applications with React, Next.js,
+            and JavaScript
+          </>
+        ),
+        tags: [
+          {
+            name: "React",
+            icon: "react",
+          },
+          { name: "Next.js", icon: "nextjs" },
+        ],
+        images: [
+          // {
+          //   src: "/images/projects/project-01/cover-04.jpg",
+          //   alt: "Project image",
+          //   width: 16,
+          //   height: 9,
+          // },
+        ],
+      },
     ],
   },
 };
@@ -427,26 +432,81 @@ const gallery: Gallery = {
   title: `Photo gallery – ${person.name}`,
   description: `A photo collection by ${person.name}`,
   // These are placeholder images, replace with your own
+  categoryPriority: ["Alien", "Adventurer's Museum", "DnD Sapphire Dragon", "Mecha'Thun", "Cassette Deck"],
   images: [
     {
       src: "https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/gallery/render-do-not-enter.jpg",
-      alt: "image",
+      alt: "Alien do not enter door",
       orientation: "horizontal",
+      category: "Alien",
     },
     {
       src: "https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/gallery/render-crt-2.jpg",
-      alt: "image",
+      alt: "alien planet",
       orientation: "horizontal",
+      category: "Alien",
     },
     {
       src: "https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/gallery/render-orbit-3.jpg",
-      alt: "image",
+      alt: "alien crt",
       orientation: "horizontal",
+      category: "Alien",
     },
     {
       src: "https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/gallery/render-robud-1.jpg",
-      alt: "image",
+      alt: "alien robud",
       orientation: "horizontal",
+      category: "Alien",
+    },
+    {
+      src: "https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/cassette/cassette-render1.jpg",
+      alt: "cassette deck",
+      orientation: "horizontal",
+      category: "Cassette Deck",
+    },
+    {
+      src: "https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/cassette/cassette-rendercloseup.jpg",
+      alt: "cassette deck closeup",
+      orientation: "horizontal",
+      category: "Cassette Deck",
+    },
+    {
+      src: "https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/museum/xray-render6.jpg",
+      alt: "museum xray render",
+      orientation: "horizontal",
+      category: "Adventurer's Museum",
+    },
+    {
+      src: "https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/museum/xray-vertical.jpg",
+      alt: "",
+      orientation: "vertical",
+      category: "Adventurer's Museum",
+    },
+    {
+      src: "https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/museum/xray-render9.jpg",
+      alt: "",
+      orientation: "vertical",
+      category: "Adventurer's Museum",
+    },
+    {
+      src: "https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/museum/xray-render7.jpg",
+      alt: "",
+      orientation: "horizontal",
+      category: "Adventurer's Museum",
+    },
+    {
+      src: "https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/sapphiredragon/dragon-lookdev.jpg",
+      alt: "WIP Lookdev render of the Sapphire Dragon model",
+      orientation: "horizontal",
+      category: "DnD Sapphire Dragon",
+      caption: "WIP Lookdev render of the Sapphire Dragon model",
+    },
+    {
+      src: "https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/mechathun/mechathun-lookdev.jpg",
+      alt: "WIP Lookdev render of the Mecha'Thun model",
+      orientation: "horizontal",
+      category: "Mecha'Thun",
+      caption: "WIP Lookdev render of the Mecha'Thun model",
     },
   ],
 };

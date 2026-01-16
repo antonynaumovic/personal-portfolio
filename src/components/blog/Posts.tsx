@@ -9,6 +9,7 @@ interface PostsProps {
   thumbnail?: boolean;
   direction?: "row" | "column";
   exclude?: string[];
+  large?: boolean;
 }
 
 export function Posts({
@@ -17,6 +18,7 @@ export function Posts({
   thumbnail = false,
   exclude = [],
   direction,
+  large = false,
 }: PostsProps) {
   let allBlogs = getPosts(["src", "app", "blog", "posts"]);
 
@@ -25,8 +27,12 @@ export function Posts({
     allBlogs = allBlogs.filter((post) => !exclude.includes(post.slug));
   }
 
+  // const sortedBlogs = allBlogs.sort((a, b) => {
+  //   return new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime();
+  // });
+
   const sortedBlogs = allBlogs.sort((a, b) => {
-    return new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime();
+    return b.metadata.priority - a.metadata.priority;
   });
 
   const displayedBlogs = range
@@ -38,7 +44,7 @@ export function Posts({
       {displayedBlogs.length > 0 && (
         <Grid columns={columns} s={{ columns: 1 }} fillWidth marginBottom="40" gap="16">
           {displayedBlogs.map((post) => (
-            <Post key={post.slug} post={post} thumbnail={thumbnail} direction={direction} />
+            <Post key={post.slug} post={post} thumbnail={thumbnail} direction={direction} large={large}/>
           ))}
         </Grid>
       )}

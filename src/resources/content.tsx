@@ -312,12 +312,17 @@ const about: About = {
             icon: "blender",
           },
           {
+            name: "Blender Geometry Nodes",
+            icon: "blender",
+          },
+          {
             name: "Substance Painter",
             icon: "substancepainter",
           },
           { name: "Substance Designer", icon: "substancedesigner" },
           { name: "Marvelous Designer", icon: "marvelousdesigner" },
           { name: "Marmoset Toolbag", icon: "marmosettoolbag" },
+          { name: "Character Creator", icon: "charactercreator" },
         ],
         images: [],
       },

@@ -43,19 +43,89 @@ The robot, which I nicknamed Robud, I modelled in Blender from screenshots I fou
 
 ## Shaders
 
+A large portion of my time in this project comprised of making shaders.
+
+In the beginning of the project, we were using Unreal's default lit pipeline, but we switched over to Substrate so we had a higher ceiling for quality.
+
+The shaders that I created were:
+
+UV2 RGB Mask shader:
+
+SDF Text shader:
+
+Glass shader:
+
+Flow decal shader:
+
+Lamp shader:
+
+Bodybag shader:
+For the Bodybag shader, I started off by posing a character from Character Creator into a corpse pose,
+then using it to create a bodybag in Marvelous Designer. After, I retopologised in Blender using Quad Remesher for the low poly, baked them using Marmoset Toolbag, and textured them in Substance Painter.
+
+I didn't want to have the engine rendering a translucent material on top of a subsurface scattering shader, so I thought I could fake the interior scattering of the
+body in-shader.
+
+In Marmoset, I used the posed body as the high poly and baked it onto the low poly, which gave me the height, colour, and normal for the interior.
+I used the heightmap in Photoshop to blend between the base colour of the bodybag and the body, so the subsurface scattering of the shader would accurately reflect how the colour
+would dissipate based on depth.
+
 
 
 ## Experimentation
 
+The scene went through several revisions, including a complete redo of the windows and ceiling to better match the original vision
+we had.
 
+I also created multiple different types of VFX to help add to some shots, this included: dripping liquid with splashing, SDF goo, and AC dust particles. 
 
 ## Environment
+
+Originally, we weren't going to have the outside of the station visible, but found that it added a lot with even just a basic blockout of the station visible.
+From gathered reference images, I created a blockout of the station, and then used my kitbash library to add extra details to the silhouette.
+I added red and white lights on masts like seen in the original concepts and created a blinking light shader that is excluded from temporal effects
+so that it can pulse quickly without being smoothed.
+I also created a procedural, low poly scaffolding system in Blender's Geometry nodes that takes the outline of a shape and turns it into scaffolding. 
+As well, I created a procedural pipe system using Geometry Nodes to quickly add piping across the station.
+
+For the windows, I found in the concept art that there were a few variations of window patterns, so I recreated those and used them to fill in the walls.
+In the engine, the windows felt a little bit flat, so I created a scene with a few of the modular walls and windows, then set up a cubemap capture to create a
+360 cubemap of the room. I then created a rotation-randomised interior cubemap shader to put on the windows. I created a quick geometry nodes setup that gave each window
+a randomised vertex colour and used the R channel to lerp the emissive intensity, and the G channel to lerp the blackbody temperature so each of the windows had a unique feel.
+
+I found this added a bit more variety to the windows as it meant it wasn't just a flat colour. I kept this performant by using an ultra-low resolution for the cubemap.
 
 
 
 ## Lighting and Rendering
 
+I also spent some time setting up lighting and realistic rendering scenarios for the scene.
 
+### Cinematography
+I recreated the same cameras and lenses that were used in the original 1979 film.
+
+#### Camera
+I used a camera with a filmback that matched the 35mm Kodak Eastman 100T 5247 film that was used
+in the film, this allowed the aspect ratio to be accurate when re-stretched from the anamorphic lens.
+
+#### Lenses
+I recreated the Panavision C-Series lenses used in the majority of filming within the film with large help from 
+tiedtke's anamorphic lenses pack: https://tiedtke.gumroad.com/l/realcinemalenses. I used these with the Unreal lens component
+and then adjusted the chromatic aberration, purple fringing, vignetting, and lens sharpness to match the output of the real
+lenses.
+
+#### Motion
+I researched some of the cinematography techniques used to establish the atmosphere within the first movie,
+and found several techniques that I incorporated into my production, this included very still shots with only one or two elements moving
+to bring an uneasy sense of stillness yet not having it lifeless.
+
+They also used rail rigs in the original, which I implemented using Unreal's Cine Rig Rails and keyframed the position manually with sequencer.
+I also used Unreal's V-Cam with my phone to capture camera rotation and shake to add to the realism of the shots.
+For scenes where I couldn't get the desired look with just my phone, I created layered camera shake using perlin noise for randomness and a sinusoidal noise for where there'd be breathing using a handheld rig.
+
+
+I wanted to experiment too using a handheld rig inside of a locker to emulate how a player would be inside of Alien: Isolation.
+I used my phone with V-Cam to emulate this look and it allowed me to capture real shakiness and feeling through the motion.
 
 ## Tools
 

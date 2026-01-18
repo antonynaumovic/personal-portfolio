@@ -1,45 +1,49 @@
 ---
 title: "Aiwa AD-1800 Cassette Deck"
-summary: "A DiNusty Empire group project"
+summary: "An exploration into lighting and rendering"
 publishedAt: "2021-08-16"
 tag: "Marmoset Toolbag, Substance Painter"
 image: "https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/cassette/cassette-rendercloseup.jpg"
 priority: 10
 ---
 
-## Concept
+## Overview
+
+Back in 2020, I wanted to dive deep into how materials age and how to represent that in 3D. 
+I chose the Aiwa AD-1800 Cassette Deck to explore anisotropic shading and multi-layered texture workflows. 
+
+The challenge was capturing the lived-in feeling: how vintage hifi equipment ages and develops wear that tells a story.
+
+## Reference & Topology
+
+I gathered references from eBay listings, service manuals, and vintage product photography. The challenge was filling in gaps where documentation didn't exist. I leaned on materials science and manufacturing techniques to inform how these surfaces would realistically degrade over years of use.
+
+I also planned the topology with animation in mind. The VU meter needles needed to be separate, riggable objects so I could drive them with audio-reactive bone drivers. The memory counter became a rotating cylinder with mapped numerals, letting me animate it to whichever position I wanted.
 
 
-## Planning
+## Modeling & Texturing
+
+I started with <Hi>Blender</Hi>, blocking out shapes with cubes and refining them using booleans and bevels for the clean, 70's aesthetic. Then I baked high-poly to low-poly in <Hi>Marmoset Toolbag</Hi> and brought everything into <Hi>Substance Painter</Hi>.
+
+For the texturing, I approached it in distinct passes, building surface character layer by layer:
+
+1. **Base materials**: Brushed aluminium, injection-moulded plastics, anodised accents - the untouched factory finish.
+2. **Wear & patina**: Discolouration, sticker damage, accumulated debris, oxidation
+3. **Micro details**: Scratches, dust settling into surfaces, subtle colour shifts from weathering
+
+I also added procedural hair and dust particles using Blender's spline modelling and particle systems. These will be small volumetric elements that sell the "lived-in" aesthetic.
 
 
+## Materials & Lighting
 
-## Challenges
+Lighting combined an HDRI of a well-lit room with directional fill and key lights. The materials are where things got interesting—each surface needed its own approach:
 
+- **Brushed Aluminium**: Anisotropic specular with texture-driven direction and roughness variation, so light travels along the grain
+- **Plastic Housing**: Clearcoat layering to simulate how the original finish degrades and loses that glossy factory look
+- **Acrylic Panel**: Subsurface scattering to capture the hazy, milky quality that builds up from repeated handling and wear
+- **Dust & Hair**: Volumetric hair shader with anisotropic highlights and SSS to feel organic and light-scattered
 
-
-## Modelling
-
-
-
-## Shaders
-
-
-
-## Experimentation
-
-
-
-## Environment
-
-
-
-## Lighting and Rendering
-
-
-
-## Tools
-
+I rendered using ray-traced global illumination in ACES colour space. For animation, I set up bone drivers in Blender that respond to audio input—the VU needles sync to the audio, and the counter spins accordingly. It ties the whole thing together.
 
 
 ## Outcome

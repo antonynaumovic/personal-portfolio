@@ -17,115 +17,86 @@ priority: 25
 ---
 
 
-## Planning
-In the beginning stages of the project, Miro brought me on board to assist with the recreation of the iconic space station from the movie Alien and game Alien: Isolation. 
-Our initial focus was on planning the project scope and dividing responsibilities. Miro took charge of the modelling and texturing aspects, while I concentrated on setting up the Unreal Engine environment, shaders, and lighting.
-we focused on gathering reference material from the original movie to ensure accuracy in our recreation. 
-We analyzed the lighting, textures, and overall atmosphere of the space station to capture its eerie and claustrophobic feel.
-I researched the real cinematography techniques used in the film to better understand how to replicate the lighting and mood in Unreal Engine.
+## Overview
+
+Miro approached me to collaborate on recreating the iconic LV-426 space station from the 1979 film *Alien* and its spiritual successor, *Alien: Isolation*. The goal was ambitious: capture the oppressive, lived-in atmosphere of that claustrophobic environment while leveraging modern rendering techniques. Miro handled modeling and texturing, while I focused on the engine setup, shader architecture, and cinematography.
 
 <M src="https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/alien/alien-pureref.jpg" title="Alien Space Station Reference" caption="Alien Space Station Reference" row={32}/>
 
-We also decided on the technical requirements for the project, including the shader workflow, which we ended up deciding to use RGB Masked materials for most assets to optimize performance while maintaining visual fidelity.
+From the start, we committed to detailed reference work—studying the original cinematography, material language, and lighting design from Ridley Scott's film. The technical strategy centered on Unreal's Substrate system with RGB-masked materials to balance visual quality against performance constraints. This workflow became the foundation for almost everything we built.
 
 
 ## Challenges
 
-Some challenges we faced in this project were: finding ways to make the visuals look like the original movie but with a modern take. I also had to find reference for the outside of the station, which there was only one place that I found high resolution renders of the sides I needed, which was Brad Wright's (Creative Assembly Lead Concept Artist) ArtStation, where he had posted concepts of the station. 
+Balancing period authenticity with modern rendering presented an ongoing tension. The exterior of the station was particularly tricky as reference material was sparse. Brad Wright's (Creative Assembly's Lead Concept Artist) ArtStation portfolio became invaluable, offering the few high-resolution exterior concepts we could source.
 
-We also wanted the station to feel lived-in, yet desolate to portray an uneasy feeling and mimic some of the techniques of the 1979 film. 
+Tone was critical for me: the station needed to feel inhabited but abandoned, eerie without being obvious. This meant studying Ridley Scott's specific cinematography choices. The stillness, subtle movement, restraint, and translating that into camera work and scene composition was crucial. 
 
-## Modelling
-I made a couple of props for the scene too, the Weylan-Yutani (later Weyland-Yutani) Aspen Beer,  where I recreated the graphics in Illustrator and Photoshop, modelled the high and low poly in Blender, baked in Marmoset Toolbag, and textured in Substance Painter. 
+## Asset Development
 
-The robot, which I nicknamed Robud, I modelled in Blender from screenshots I found in-game, I modelled the mid poly in Blender, then from that I created a low poly and high poly. I baked from the high to mid poly in Marmoset Toolbag to get a better cage and bake since it shared the UVs with the low poly. I then textured the asset in Substance Painter. 
+I contributed a couple of hero props to the scene:
+
+**Weylan-Yutani Aspen Beer Can**: I recreated the film accurate graphics in <Hi>Illustrator and Photoshop</Hi>, then modelled both high and low poly in <Hi>Blender</Hi>. Baking in <Hi>Marmoset Toolbag</Hi> captured the detail, and <Hi>Substance Painter</Hi> handled the final texturing.
+
+**Robud**: Sourced from screenshots across the Alien games, I wanted to make a fun little asset to bring life to the scene. I built a mid-poly base in <Hi>Blender</Hi>, then created both high and low variants. For baking, I used the high-to-mid poly approach in Marmoset since both mid and low shared the same UVs, giving me better cage geometry and more accurate normal transfer.  
 
 
-## Shaders
+## Shader Architecture
 
-A large portion of my time in this project comprised of making shaders.
+Shaders occupied a significant portion of my effort. We started with Unreal's standard lit pipeline, but quickly migrated to Substrate for the higher visual fidelity ceiling it provided. This architectural shift enabled more complex material behavior without spiraling performance costs.
 
-In the beginning of the project, we were using Unreal's default lit pipeline, but we switched over to Substrate so we had a higher ceiling for quality.
+**Core Shaders Developed:**
 
-The shaders that I created were:
+**UV2 RGB Mask**: The workhorse material. Used across modular assets with packed color channels driving different material properties simultaneously.
 
-UV2 RGB Mask shader:
+**SDF Text**: Procedural text rendering without texture sheets, enabling readable signage at variable scales.
 
-SDF Text shader:
+**Glass**: Layered dielectric approximation with chromatic dispersion and surface detail.
 
-Glass shader:
+**Flow Decal**: Directional decal projection for practical effects like leaking fluids.
 
-Flow decal shader:
+**Lamp**: Practical and emissive lights with color temperature variation.
 
-Lamp shader:
+**Bodybag Shader**: This was conceptually interesting. I posed a character from <Hi>Character Creator</Hi> in a corpse configuration, then fabricated the bodybag cloth in <Hi>Marvelous Designer</Hi>. After retopology in Blender (Quad Remesher for the low poly) and baking in Marmoset, I worked on the shader behavior.
 
-Bodybag shader:
-For the Bodybag shader, I started off by posing a character from Character Creator into a corpse pose,
-then using it to create a bodybag in Marvelous Designer. After, I retopologised in Blender using Quad Remesher for the low poly, baked them using Marmoset Toolbag, and textured them in Substance Painter.
-
-I didn't want to have the engine rendering a translucent material on top of a subsurface scattering shader, so I thought I could fake the interior scattering of the
-body in-shader.
-
-In Marmoset, I used the posed body as the high poly and baked it onto the low poly, which gave me the height, colour, and normal for the interior.
-I used the heightmap in Photoshop to blend between the base colour of the bodybag and the body, so the subsurface scattering of the shader would accurately reflect how the colour
-would dissipate based on depth.
+The challenge: I didn't want the engine rendering translucent geometry on top of a full subsurface scattering shader, which is inefficient and visually messy. Instead, I baked the posed body (as high poly) onto the bodybag geometry, extracting height, color, and normal maps. In Photoshop, I used the heightmap to blend between base cloth color and interior body color, so the shader's subsurface scattering could realistically simulate how color dissipates through depth.
 
 
 
-## Experimentation
+## Iteration & VFX
 
-The scene went through several revisions, including a complete redo of the windows and ceiling to better match the original vision
-we had.
+The scene evolved through multiple passes. Windows and ceiling received complete overhauls to better align with the original aesthetic and mood we were targeting.
 
-I also created multiple different types of VFX to help add to some shots, this included: dripping liquid with splashing, SDF goo, and AC dust particles. 
+I created a suite of visual effects to enhance key moments: dripping liquid with realistic splash dynamics, procedural SDF-based goo effects, and AC ventilation dust particle systems. Each added another layer of environmental storytelling. 
 
-## Environment
+## Environment & Exterior
 
-Originally, we weren't going to have the outside of the station visible, but found that it added a lot with even just a basic blockout of the station visible.
-From gathered reference images, I created a blockout of the station, and then used my kitbash library to add extra details to the silhouette.
-I added red and white lights on masts like seen in the original concepts and created a blinking light shader that is excluded from temporal effects
-so that it can pulse quickly without being smoothed.
-I also created a procedural, low poly scaffolding system in Blender's Geometry nodes that takes the outline of a shape and turns it into scaffolding. 
-As well, I created a procedural pipe system using Geometry Nodes to quickly add piping across the station.
+We initially planned to keep the station's exterior out of frame, but realized even a simple silhouette added crucial context and atmosphere. From reference imagery, I blocked out the external geometry, then densified it with kitbash library assets for better silhouettes.
 
-For the windows, I found in the concept art that there were a few variations of window patterns, so I recreated those and used them to fill in the walls.
-In the engine, the windows felt a little bit flat, so I created a scene with a few of the modular walls and windows, then set up a cubemap capture to create a
-360 cubemap of the room. I then created a rotation-randomised interior cubemap shader to put on the windows. I created a quick geometry nodes setup that gave each window
-a randomised vertex colour and used the R channel to lerp the emissive intensity, and the G channel to lerp the blackbody temperature so each of the windows had a unique feel.
+I added signature red warning lights on masts (sourced from the original concepts) with a custom blinking shader excluded from temporal anti-aliasing to preserve fast pulse frequencies without smoothing artifacts.
 
-I found this added a bit more variety to the windows as it meant it wasn't just a flat colour. I kept this performant by using an ultra-low resolution for the cubemap.
+A procedural scaffolding system in Blender's Geometry Nodes automated structural geometry: outline → parametric scaffolding. Similarly, a procedural pipe system generated piping networks efficiently across the hull.
+
+**Window Treatment**: The concept art showed distinct window pattern variations, which I recreated and used to tile across interior walls. Initially they felt flat and lifeless in-engine. So I built a small environment scene with modular wall sections and windows, performed a cubemap capture (360° interior), then created a rotation-randomized interior cubemap shader for the windows.
+
+I added a Geometry Nodes pass that randomizes vertex color per window, using the R channel to modulate emissive intensity and the G channel to shift blackbody temperature. This created subtle per-window variation without flatness, while staying performant through ultra-low cubemap resolution.
 
 
 
-## Lighting and Rendering
+## Cinematography & Camera Work
 
-I also spent some time setting up lighting and realistic rendering scenarios for the scene.
+I spent considerable time recreating the cinematographic language of the original film. It was a deliberate constraint that elevated the visual consistency.
 
-### Cinematography
-I recreated the same cameras and lenses that were used in the original 1979 film.
+**Filmstock & Format**: I configured the camera to match the 35mm Kodak Eastman 100T 5247 filmstock used in the 1979 shoot, with a filmback that ensured accurate aspect ratio when re-squeezed from anamorphic lensing.
 
-#### Camera
-I used a camera with a filmback that matched the 35mm Kodak Eastman 100T 5247 film that was used
-in the film, this allowed the aspect ratio to be accurate when re-stretched from the anamorphic lens.
+**Lenses**: The Panavision C-Series lenses recreated the original filming. Using tiedtke's comprehensive anamorphic lenses pack (https://tiedtke.gumroad.com/l/realcinemalenses), I configured Unreal's lens component and tuned optical imperfections: chromatic aberration, purple fringing, vignetting, and focus falloff to match the real optics.
 
-#### Lenses
-I recreated the Panavision C-Series lenses used in the majority of filming within the film with large help from 
-tiedtke's anamorphic lenses pack: https://tiedtke.gumroad.com/l/realcinemalenses. I used these with the Unreal lens component
-and then adjusted the chromatic aberration, purple fringing, vignetting, and lens sharpness to match the output of the real
-lenses.
+**Motion & Composition**: Ridley Scott's cinematography relied on sparse, deliberate movement with still shots with minimal animation to create unease without feeling static. I replicated this through:
 
-#### Motion
-I researched some of the cinematography techniques used to establish the atmosphere within the first movie,
-and found several techniques that I incorporated into my production, this included very still shots with only one or two elements moving
-to bring an uneasy sense of stillness yet not having it lifeless.
-
-They also used rail rigs in the original, which I implemented using Unreal's Cine Rig Rails and keyframed the position manually with sequencer.
-I also used Unreal's V-Cam with my phone to capture camera rotation and shake to add to the realism of the shots.
-For scenes where I couldn't get the desired look with just my phone, I created layered camera shake using perlin noise for randomness and a sinusoidal noise for where there'd be breathing using a handheld rig.
-
-
-I wanted to experiment too using a handheld rig inside of a locker to emulate how a player would be inside of Alien: Isolation.
-I used my phone with V-Cam to emulate this look and it allowed me to capture real shakiness and feeling through the motion.
+- **Rail Rigs**: Implemented via Unreal's Cine Rig Rails system with manual Sequencer keyframing
+- **Handheld Motion**: Captured real camera movement and shake using Unreal's V-Cam with my phone as the input device, lending organic imperfection
+- **Layered Shake**: For scenes where V-Cam alone couldn't achieve the desired feel, I layered Perlin noise for organic randomness with sinusoidal breathing motion to simulate a handheld rig
+- **Locker POV**: I experimented with confined camera work—simulating how a player experiences *Alien: Isolation* from inside a locker. V-Cam captured the claustrophobic shake and gave the motion tactile authenticity
 
 ## Tools
 

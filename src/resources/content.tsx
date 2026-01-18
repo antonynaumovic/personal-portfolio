@@ -300,6 +300,7 @@ const about: About = {
             icon: "cplusplus",
           },
           { name: "Blueprint", icon: "blueprint" },
+          { name: "Control Rig", icon: "controlrig" },
         ],
         images: [],
       },
@@ -312,8 +313,8 @@ const about: About = {
             icon: "blender",
           },
           {
-            name: "Blender Geometry Nodes",
-            icon: "blender",
+            name: "Geometry Nodes",
+            icon: "geometrynodes",
           },
           {
             name: "Substance Painter",
@@ -349,6 +350,21 @@ const about: About = {
         tags: [
           { name: "Jira", icon: "jira" },
           { name: "Confluence", icon: "confluence" },
+        ],
+        images: [],
+      },
+            {
+        title: "Pipeline Tools",
+        description: (
+          <>
+          </>
+        ),
+        tags: [
+          { name: "Photoshop", icon: "adobephotoshop" },
+          { name: "Illustrator", icon: "adobeillustrator" },
+          { name: "Lightroom", icon: "adobelightroom" },
+          { name: "After Effects", icon: "adobeaftereffects" },
+
         ],
         images: [],
       },

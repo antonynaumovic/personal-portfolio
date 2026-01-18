@@ -39,6 +39,8 @@ import {
   SiAdobe,
   SiRender,
   SiTypescript,
+  SiAdobeaftereffects,
+  SiAdobeillustrator,
 } from "react-icons/si";
 
 import {
@@ -74,12 +76,13 @@ import {
   FaShareNodes,
   FaTrowelBricks,
   FaGaugeHigh,
-  FaShirt 
-
+  FaShirt,
+  FaCircleNodes,
+  FaPersonCirclePlus
 } from "react-icons/fa6";
 import { TbBrandCSharp } from "react-icons/tb";
 import { IoIosPaper } from "react-icons/io";
-import { GiStoneSphere, GiMonkey  } from "react-icons/gi";
+import { GiStoneSphere, GiMonkey, GiSkeletonInside   } from "react-icons/gi";
 
 export const iconLibrary: Record<string, IconType> = {
   arrowUpRight: HiArrowUpRight,
@@ -124,6 +127,9 @@ export const iconLibrary: Record<string, IconType> = {
   adobexd: SiAdobexd,
   adobephotoshop: SiAdobephotoshop,
   adobelightroom: SiAdobelightroom,
+  adobeaftereffects: SiAdobeaftereffects,
+  adobeillustrator: SiAdobeillustrator,
+  controlrig: GiSkeletonInside,
   blender: SiBlender,
   substancepainter: SiAdobe,
   substancedesigner: SiAdobe,
@@ -141,7 +147,8 @@ export const iconLibrary: Record<string, IconType> = {
   vfxgraph: FaExplosion,
   jira: FaJira,
   confluence: FaConfluence,
-
+  geometrynodes: FaCircleNodes,
+  charactercreator: FaPersonCirclePlus,
 };
 
 export type IconLibrary = typeof iconLibrary;

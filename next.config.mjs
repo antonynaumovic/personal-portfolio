@@ -22,6 +22,7 @@ const nextConfig = {
         pathname: "/**",
       },
     ],
+    dangerouslyAllowLocalIP: true,
   },
   sassOptions: {
     compiler: "modern",

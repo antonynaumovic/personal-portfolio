@@ -1,0 +1,55 @@
+---
+title: "Batex Blender Addon"
+summary: "Blender addon for batch exporting FBX files"
+publishedAt: "2026-01-30"
+tag: "Tools, Python"
+priority: 1
+image: https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/batex/batex_export.jpg
+---
+
+[GitHub Repository]("https://github.com/antonynaumovic/Batex" "Batex GitHub Repository")
+
+## Concept
+Batex was an existing <Hi>Blender</Hi> addon that I've been using for a while to batch export FBX files. 
+However, it had some limitations and bugs that I wanted to address, so I decided to create my own version of the addon with improved functionality and a more user-friendly interface.
+
+
+The last update to the original Batex was in 2019, and it was built for older versions of Blender, so I wanted to update it to be compatible with the latest versions and add some new features that I found useful in my workflow.
+
+## Planning
+
+There were several key features I wanted to include in the addon:
+- **Single Export Mode**: Allow the tool to export a single FBX file containing all selected objects, which is useful for exporting entire scenes or groups of assets.
+- **Re-export**: Re-export the last exported file with the same settings, saving time when making iterative changes to assets.
+- **Unreal Settings**: Automatically apply Unreal Engine export settings to ensure compatibility and correct axes orientation when exporting assets for use in Unreal Engine.
+- **User Interface**: Update the UI to be more intuitive and user-friendly, with clear options and settings for batch exporting.
+- **Quick Access**: Add the export options to a separate panel, so users can quickly access the batch export functionality without having to navigate through multiple menus.
+
+
+## Challenges
+
+I had to update the addon to be compatible with the latest versions of Blender, which involved refactoring some of the code and updating the functions to match the new Blender API.
+I also had to ensure that the addon used Blender's new Extensions system for registering the addon, which required some changes to the structure of the code.
+
+## Programming
+The addon is written in <Hi>Python</Hi>, using Blender's Python API to interact with the software and perform the batch export functionality.
+I implemented the new features and improvements based on my experience using the original Batex addon and the needs I had in my workflow when exporting assets from Blender to Unreal Engine.
+I also added error handling and validation to ensure that the addon would work smoothly and provide feedback to the user if there were any issues during the export process.
+Since the FBX exporter can change in Blender updates, I implemented a system to check for the enums available in the current version of Blender and adjust the available options accordingly, 
+ensuring that the addon remains functional across different versions of Blender.
+
+## Outcome
+
+The updated Batex addon is now available on <Hi>GitHub</Hi>, and it includes the new features and improvements that I set out to implement.
+It has been tested in Blender 5 and is compatible with the latest versions of Blender
+
+<ExternalLink href="https://github.com/antonynaumovic/Batex" title="Batex GitHub Repository" alt="Batex GitHub Repository Link" fillWidth/>
+
+<Row gap="16">
+    <Column>
+        <M src="https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/batex/batex_batch_interface.jpg" alt="Batex Batch Interface" title="Batex Batch Interface" caption="Batch Export Interface" fillHeight/>
+    </Column>
+    <Column>
+        <M src="https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/batex/batex_single_interface.jpg" alt="Batex Single Interface" title="Batex Single Interface" caption="Single Export Interface" fillHeight/>
+    </Column>
+</Row>

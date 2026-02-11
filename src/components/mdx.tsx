@@ -32,12 +32,18 @@ import {
   Swiper,
   Scroller,
   MasonryGrid,
+  Carousel,
 } from "@once-ui-system/core";
 
 type CustomLinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
   href: string;
   children: ReactNode;
 };
+
+interface CarouselItem {
+    slide: string | React.ReactNode;
+    alt?: string;
+}
 
 function CustomLink({ href, children, ...props }: CustomLinkProps) {
   if (href.startsWith("/")) {
@@ -175,6 +181,22 @@ function createMedia({
         </Row>
       )}
     </>
+  );
+}
+
+function createCarousel({
+  aspectRatio = "16/9",
+  items,
+  ...props
+}: { aspectRatio: string; items: (CarouselItem[]) }) {
+  return (
+
+    <Carousel aspectRatio={aspectRatio}
+      items={[
+        ...items
+      ]}
+      {...props}
+    />
   );
 }
 
@@ -367,6 +389,7 @@ const components = {
   Hi: createHighlight as any,
   MasonryGrid,
   MGM: createGridMedia as any,
+  Carousel: createCarousel as any,
 };
 
 type CustomMDXProps = MDXRemoteProps & {

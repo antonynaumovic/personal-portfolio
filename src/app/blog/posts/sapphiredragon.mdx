@@ -16,18 +16,54 @@ priority: 24
 
 ## Planning
 
+For the project, I started out by gathering reference images and concept art of the dragon to understand its design and details. 
+I also looked through the DnD Wiki to find any additional information about the dragon's appearance and characteristics that could help inform my modelling and texturing process.
+I found that the dragon is described as having a crystalline, gem-like appearance, which inspired me to focus on creating a shader that could capture the unique look of the dragon's skin and scales.
 
+The dragon is also described as being territorial, cunning, and having a psionic nature. This influenced my decision to give the dragon a sleek and menacing look, with sharp, angular features and a dark, iridescent colour palette.
 
-## Challenges
+I also researched Unreal Engine 5's Substrate material system to see how I could leverage it to achieve the desired look for the dragon's skin and scales.
+
+I created a PureRef board to organise my reference images and keep them easily accessible throughout the project. This helped me stay focused on the key design elements and ensure that I was capturing the essence of the dragon's appearance in my work.
+
+<M src="https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/sapphiredragon/dragon-pureref.jpg" alt="Sapphire Dragon PureRef Board" title="Sapphire Dragon PureRef Board" caption="Sapphire Dragon PureRef Board" aspectRatio="16/9"/>
 
 
 
 ## Modelling
 
+I started this project by using a skeleton 3D model of a human figure, which I found from [AnatomyTool]("https://anatomytool.org/open3dmodel" "AnatomyTool Website"), as a base for the dragon's body. 
+I chose this approach to get a realistic and anatomically correct structure for the dragon. I then blocked out a rough muscle structure on top of the skeleton to establish the overall shape and proportions of the dragon's body.
+
+I researched various dragon anatomy and musculature to inform my modelling process, looking at both real-world animals and fantasy art to understand how the muscles would flow and connect on the dragon's body.
+I paid close attention to the reference images and concept art to ensure that I was capturing the unique features of the dragon, such as its long neck, powerful limbs, and large wings.
+
+
+I used the side and top view reference images to create a rough blockout of the dragon's body, focusing on capturing the overall shape and proportions of the creature. 
+I then added more detail to the model, sculpting the scales individually to create their flowing, organic shapes. 
+I paid close attention to the reference images to ensure that the scales had the right curvature and thickness.
+
+
+I sculpted the dragon in a neutral pose, with its wings outstretched and its head held high. This allowed me to focus on the details of the body and scales without having to worry about the deformation of the model during animation.
+
+
+I manually retopologised the model to create a clean, game-ready mesh that would deform well during animation, but still had the scales modelled individually where needed to capture their silhouette and details.
+
+
+I also created a higher-poly version of the muscles to use for baking information and future muscle simulation, which I planned to implement later in the project to add more realism to the dragon's movement and deformation.
+
+<Carousel aspectRatio="16/9" indicator="thumbnail" items={[
+    {slide: "https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/sapphiredragon/dragon-skeleton.jpg", alt: "Sapphire Dragon Skeleton"}, 
+    {slide: "https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/sapphiredragon/dragon-muscles.jpg", alt: "Sapphire Dragon Muscles"},
+    {slide: "https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/sapphiredragon/dragon-musculoskeletal.jpg", alt: "Sapphire Dragon Musculoskeletal"},
+    {slide: "https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/sapphiredragon/dragon-wireframe.jpg", alt: "Sapphire Dragon Wireframe"},
+    ]} />
 
 
 ## Rigging
 
+
+## Challenges
 
 
 ## Shaders

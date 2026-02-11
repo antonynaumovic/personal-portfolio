@@ -39,7 +39,7 @@ export default function Blog() {
         {/* <Heading as="h2" variant="heading-strong-xl" marginLeft="l">
           Earlier posts
         </Heading> */}
-        <Posts range={[4]} columns="2" thumbnail/>
+        <Posts range={[4]} columns="2" thumbnail direction="column" />
         <Mailchimp marginBottom="l" />
       </Column>
     </Column>

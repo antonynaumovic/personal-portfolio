@@ -1,0 +1,97 @@
+---
+title: "Walk Assistant App"
+summary: "Desktop app for connecting to a mobile device and using its sensors to control a character in a game"
+publishedAt: "2026-02-05"
+tag: "Tools, Python"
+priority: 1
+image: "https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/walkassistant/wa_active.jpg"
+---
+
+[GitHub Repository]("https://github.com/antonynaumovic/WalkAssistant" "Walk Assistant GitHub Repository")
+
+## So what is it?
+WalkAssistant is a Python application that converts OSC (Open Sound Control) messages into keypresses for gaming, featuring a Flet-based UI and a robust backend using python-osc. 
+The project enables real-time interaction between external devices and games, allowing users to map motion or sensor data to keyboard actions. 
+Throughout development, the tool was enhanced with rate limiting, smoothing, dynamic charting, and flexible configuration, ensuring responsive and reliable performance.
+
+## Concept
+My friend wanted to walk on a treadmill while playing games and have it respond to his movements, so I decided to create a desktop application that could connect to his mobile device and use its sensors to control a character in a game.
+There were no free solutions available that I could find, which needed to be compatible with both Android and iOS, and could convert the sensor data into keypresses that games could recognise.
+
+
+## Planning
+I started by researching how to receive sensor data from a mobile device and convert it into keypresses on a desktop application. 
+I decided to use OSC (Open Sound Control) as the protocol for sending data from the mobile device to the desktop application, as it is widely supported and allows for real-time communication. 
+
+
+I also found several apps for both Android and iOS that could send OSC messages based on the device's sensors, which would allow for easy integration with the desktop application.
+I chose to build the desktop application using Python, as it has a wide range of libraries for handling OSC messages and simulating keypresses.
+
+
+At the start of the project, for proof of concept, I created a simple command-line application that could receive OSC messages and print them to the console.
+Once I had the basic functionality working, I planned to build a more user-friendly interface using Flet, which would allow users to easily configure the key mappings and view the incoming sensor data in real-time.
+
+## Development
+I implemented the OSC server using the python-osc library, which allowed me to receive messages from the mobile device and process them in the application. 
+
+
+I set up a system to use a YAML configuration file, where the program would read the key mappings and other settings, allowing for easy customization without needing to modify the code.
+This way, users could easily change the settings and have them persist across sessions without needing to interact with the code directly. Also, they can transfer the configuration file to other devices or share it with friends.
+
+
+I wanted the program to be easily adaptable to different games and use cases, so I implemented a flexible mapping system that could handle various types of sensor data and convert them into keypresses based on user-defined rules in the configuration file.
+You can bind different OSC endpoints to different parts of the outputs, such as binding the gyroscope's x to the x, inclination to the y, and so on.
+
+
+You can also set up conditions for when certain keypresses should be triggered, such as only triggering the walk and run when the acceleration is above a certain threshold.
+I also implemented rate limiting and smoothing to ensure that the triggers don't become too sensitive or spammy, which can be a common issue when dealing with real-time sensor data.
+
+To provide users with feedback on the incoming sensor data, I implemented a real-time charting system using Flet's built-in charting capabilities.
+This allows users to see the sensor data in real-time and adjust their movements accordingly, providing a more interactive and engaging experience when using the application with their games.
+
+I also added an icon in the bottom right corner to show the current state, whether it's stationary, walking, or running, which provides a quick visual indicator of the current movement state based on the sensor data.
+
+In the bottom left, I added a status display to show the current IP address, port, and connection status, 
+which helps users troubleshoot any connectivity issues and ensures that they can easily see when the application is successfully receiving data from the mobile device.
+
+I wanted to make the app be able to run in the background while gaming, 
+so I implemented a system to hide the window and keep it running in the background, 
+allowing users to collapse the app to tray while still having the application active and responsive to their movements.
+
+## Challenges
+
+The app was getting overwhelmed with the amount of data coming in from the sensors, which was causing it to become unresponsive and laggy.
+To address this, I implemented rate limiting to control the frequency of handled messages, ensuring that the application could process the incoming data without becoming overwhelmed.
+This involved setting a maximum number of messages that could be processed per second, which helped to maintain the responsiveness of the application while still allowing for real-time interaction with the games.
+
+Also, I implemented smoothing algorithms to help filter out noise from the sensor data, which can often be erratic and lead to jittery movements in the game.
+
+I also had to that the graph wasn't causing performance issues, 
+so I implemented a system to limit the number of data points being rendered at any given time, 
+ensuring that the real-time charting remained responsive and didn't negatively impact the overall performance of the application. 
+I also made it so that the UI would only update when visible, which helped to reduce unnecessary updates and improve performance when the app was running in the background.
+
+
+
+## Outcome
+
+<ExternalLink href="https://github.com/antonynaumovic/WalkAssistant" title="WalkAssistant GitHub Repository" alt="WalkAssistant GitHub Repository Link" fillWidth/>
+
+<Row gap="16">
+    <Column>
+        <M src="https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/walkassistant/wa_active.jpg" alt="WalkAssistant Active Interface" title="WalkAssistant Active Interface" caption="Active Interface" fillHeight/>
+    </Column>
+    <Column>
+        <M src="https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/walkassistant/wa_sprinting.jpg" alt="WalkAssistant Sprinting" title="WalkAssistant Sprinting" caption="Sprinting" fillHeight/>
+    </Column>
+</Row>
+
+<Row gap="16">    
+    <Column>
+        <M src="https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/walkassistant/wa_settings.jpg" alt="WalkAssistant Settings" title="WalkAssistant Settings" caption="Settings" fillHeight/>
+    </Column>
+    <Column>
+        <M src="https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/walkassistant/wa_endpoints.jpg" alt="WalkAssistant Endpoints" title="WalkAssistant Endpoints" caption="Endpoints" fillHeight/>
+    </Column>
+
+</Row>

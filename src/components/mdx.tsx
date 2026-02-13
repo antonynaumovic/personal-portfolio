@@ -188,7 +188,8 @@ function createCarousel({
   aspectRatio = "16/9",
   items,
   ...props
-}: { aspectRatio: string; items: (CarouselItem[]) }) {
+}: { aspectRatio: string; items: CarouselItem[] }) {
+  console.log("Creating carousel with items:", items);
   return (
 
     <Carousel aspectRatio={aspectRatio}

@@ -34,6 +34,7 @@ import {
   MasonryGrid,
   Carousel,
 } from "@once-ui-system/core";
+import { SerializeOptions } from "cookie";
 
 type CustomLinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
   href: string;
@@ -395,6 +396,7 @@ const components = {
 
 type CustomMDXProps = MDXRemoteProps & {
   components?: typeof components;
+  options?: SerializeOptions;
 };
 
 export function CustomMDX(props: CustomMDXProps) {

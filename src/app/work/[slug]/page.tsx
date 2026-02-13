@@ -146,7 +146,7 @@ export default async function Project({
             />
           )}
           <Column style={{ margin: "auto" }} as="article" maxWidth="xs">
-            <CustomMDX source={post.content} />
+            <CustomMDX source={post.content} options={{ blockJS: false, blockDangerousJS: false }}/>
           </Column>
           <Column fillWidth gap="40" horizontal="center" marginTop="40">
             <Line maxWidth="40" />

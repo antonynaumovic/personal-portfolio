@@ -188,7 +188,7 @@ export default async function Blog({
             horizontal="center"
             marginTop="40"
           >
-            <CustomMDX source={post.content} />
+            <CustomMDX source={post.content} options={{ blockJS: false, blockDangerousJS: false }}/>
             {post.metadata.skills && (
               <Column fillWidth gap="l">
                 <Row wrap fillWidth gap="8" vertical="center">

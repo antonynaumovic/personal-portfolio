@@ -61,13 +61,38 @@ I also created a higher-poly version of the muscles to use for baking informatio
 
 
 ## Rigging
+I rigged the dragon first in Blender using Auto Rig Pro, and set up the bone chains for IK
+I also added bones inside the wing's sails to control droop and flutter. 
 
+
+I also added constraints for the muscles using X-Muscle to allow them to deform properly with motion. 
 
 ## Challenges
 
+Within the start of this project, a few challenges that I faced were:
+- Maintaining texel density whilst ensuring ease for texturing. so in the end I used 8 UDIM tiles with everything having uniform texel density apart from the wings, which I scaled and then used a static scale to ensure all shader effects were uniform between the two areas. 
+- Ensuring there's no clipping of the wings when deforming the sails in the rig. to fix this, I painted the weights from above using pass through mode so every vertex got deformed the same and can't clip. 
+- Control Rig, at the start I used control rig instead of modular control rig, however I found that the modular approach suited my needs better as a lot of the rig was mirrored and the IK chains were really useful. 
+
 
 ## Shaders
+I started off this project using Substrate as an exploration into the new system and how far you can push its fidelity. 
+I wanted to add a "fake" depth to the material which would show the crystalline structure of the sapphire and have it
+not just on the surface, but on the muscles and bones too. 
+I baked from high to low using Marmoset Toolbag, and also baked a depth map from the muscles to low and the bones to low, which I can use for extra shader effects. 
+I created a base texture using Substance Painter and the baked maps from Marmoset, it features surface colour variation, as well as ORM (Occlusion, Roughness, Metallic).
 
+To get the shattered stained glass effect, I created a material in Substance Designer, which utilised a point cloud to scatter points over the wing mask using a gradient created by placed curves over each of the sails to get the size gradient. 
+I then got the distance between each point to created my own voronoi but with gradiented size. I smoothed out this voronoi slightly and then used each of the cells with a flood fill to generate a colour map for these cells. 
+
+
+I also created several masks to use in the shader, such as the wing mask and translucency mask. 
+
+I brought those base textures into Unreal, and set them up as virtual textures, then I used the cells mask from Designer to add refraction to those cells, which allowed the coloured stained glass effect through the wing membrane. 
+
+
+
+## Control Rig
 
 
 ## Experimentation

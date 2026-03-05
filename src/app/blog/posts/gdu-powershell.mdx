@@ -1,0 +1,44 @@
+---
+title: "GDU - Game Dev Utilities"
+summary: "Powershell tool for automating common game development tasks."
+publishedAt: "2026-02-05"
+tag: "Tools, Powershell"
+priority: 5
+image: "https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/gdu/GDU%2016-9%20Inverted.png"
+---
+
+<ExternalLink href="https://github.com/antonynaumovic/GDU-Powershell" title="GDU GitHub Repository" alt="GDU GitHub Repository Link" fillWidth/>
+
+## Concept
+
+Game development often involves repetitive tasks such as resizing textures, converting file formats, and combining textures. 
+To streamline these processes, I developed a Powershell utility called GDU (Game Dev Utilities) that automates common game development tasks, 
+saving time and reducing manual effort.
+
+
+
+
+## Planning
+
+There were several key features I wanted to include in the utility:
+- **Compression**: Be able to compress textures using different algorithms to optimize them for game engines.
+- **Resizing**: Be able to resize textures to different resolutions while maintaining quality.
+- **Mask Maps**: Automatically create and configure mask/ORM maps using existing textures.
+- **Flip Normals**: Be able to flip normals in textures for correct shading in 3D models.
+
+
+## Challenges
+
+One of the main challenges was ensuring that the utility could handle a wide variety of texture formats and resolutions without crashing or producing errors.
+
+I also had to ensure that the utility was user-friendly and could be easily integrated into existing workflows, which involved creating a clear command-line interface and providing helpful error messages when issues arose.
+
+
+I tried a few different utilites for image processing in Powershell, but found that some edited the colour space of the textures, which led to a loss of quality and consistency in the textures when used in game engines.
+I ended up using the ImageMagick command-line tool for the texture combination, whilst using NVIDIA Texture Tools for the compression and resizing, as they provided the best results in terms of quality and function.
+
+
+
+## Outcome
+The GDU tools have improved my workflow for automating common game development tasks. It streamlines the process of resizing textures, converting file formats, and creating mask maps, allowing me to focus more on the creative aspects of game development.
+The tools are user-friendly and integrate seamlessly into existing workflows, making them a valuable asset for game developers looking to enhance their productivity.

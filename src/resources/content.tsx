@@ -353,7 +353,7 @@ const about: About = {
         ],
         images: [],
       },
-            {
+      {
         title: "Pipeline Tools",
         description: (
           <>
@@ -431,28 +431,27 @@ const about: About = {
 
 const blog: Blog = {
   path: "/blog",
-  label: "Blog",
+  label: "Personal Projects",
   title: "Writing about personal projects and tools",
   description: `Read what ${person.name} has been up to recently`,
-  // Create new blog posts by adding a new .mdx file to app/blog/posts
-  // All posts will be listed on the /blog route
+  // Create new blog posts by adding a new .mdx file to app/projects/posts
+  // All posts will be listed on the /projects route
 };
 
 const work: Work = {
   path: "/work",
   label: "Work",
-  title: `Projects – ${person.name}`,
+  title: `Work Projects - ${person.name}`,
   description: `Design and dev projects by ${person.name}`,
-  // Create new project pages by adding a new .mdx file to app/blog/posts
+  // Create new project pages by adding a new .mdx file to app/work/posts
   // All projects will be listed on the /home and /work routes
 };
 
 const gallery: Gallery = {
   path: "/gallery",
   label: "Gallery",
-  title: `Photo gallery – ${person.name}`,
-  description: `A photo collection by ${person.name}`,
-  // These are placeholder images, replace with your own
+  title: `Gallery - ${person.name}`,
+  description: `Gallery by ${person.name}`,
   categoryPriority: ["Alien", "Adventurer's Museum", "DnD Sapphire Dragon", "Mecha'Thun", "Cassette Deck"],
   images: [
     {
@@ -499,19 +498,19 @@ const gallery: Gallery = {
     },
     {
       src: "https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/museum/xray-vertical.jpg",
-      alt: "",
+      alt: "museum xray vertical",
       orientation: "vertical",
       category: "Adventurer's Museum",
     },
     {
       src: "https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/museum/xray-render9.jpg",
-      alt: "",
+      alt: "museum xray render 9",
       orientation: "vertical",
       category: "Adventurer's Museum",
     },
     {
       src: "https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/museum/xray-render7.jpg",
-      alt: "",
+      alt: "museum xray render 7",
       orientation: "horizontal",
       category: "Adventurer's Museum",
     },
@@ -523,7 +522,7 @@ const gallery: Gallery = {
       caption: "WIP Lookdev render of the Sapphire Dragon model",
     },
     {
-      src: "https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/mechathun/mechathun-lookdev.jpg",
+      src: "https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/mechathun/mechathun-current.jpg",
       alt: "WIP Lookdev render of the Mecha'Thun model",
       orientation: "horizontal",
       category: "Mecha'Thun",

@@ -10,44 +10,147 @@ priority: 20
 ## Currently WIP
 
 ## Concept
-
 <ExternalLink href="https://www.artstation.com/artwork/lGY9lo" title="Concept Art by TESOLIN Clément" alt="TESOLIN Clément ArtStation Link" fillWidth/>
+<M src="https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/mechathun/tesolin-clement-mecha-cthun-render.jpg" alt="Mecha'Thun Concept Art by TESOLIN Clément" title="Mecha'Thun Concept Art by TESOLIN Clément" caption="Mecha'Thun Concept Art by TESOLIN Clément"/>
+
+
 
 ## Planning
 
-For the 
+I was given this concept by a friend, with the brief to create a <Hi>shader</Hi> in <Hi>Unreal Engine 5</Hi> that could capture the unique look of Mecha'Thun. 
+
+Mecha'Thun is a mechanical skin in Hearthstone of the Warcraft character C'Thun. 
+The character is described as having a corrupted, glitchy appearance, with electric and mechanical elements that give it a futuristic and menacing look.
 
 
-## Challenges
+I was challenged to: 
+
+1. Use SDFs (Signed Distance Fields) to create the shapes, rather than using textures
+1. Not use Parallax Occlusion Mapping
+1. Add an animatable parameter to control the pupil opening
+1. Allow an external vector to control the look direction of the eye
+1. Add a glitch effect to emphasise the corrupted display look
+1. Create electric fresnel shapes
+1. Experiment with fake reflections
 
 
+I started by gathering reference images and concept art of Mecha'Thun to understand its design and details. 
+I also looked through the DnD Wiki to find any additional information about the character's appearance and characteristics that could help inform my shader development process.
+As well, in my PureRef board, I collected various images of ancient stone carved buildings to understand the kind of details I could add to the environment.
 
 ## Modelling
 
+Initially, I created a simple blockout of the body and eyes in <Hi>Blender</Hi> to use as a reference for the shader development in Unreal Engine.
 
+Once I started developing the modelling more, I created a more detailed version of the body, and separated each of the panels. I added boolean cuts to create the divots for the bolt heads, and cut out the sockets for the eyes.
+I used an array to create the repeating "crown" shapes around the top of the body.
 
-## Rigging
-
+For the background, I blocked out the general shapes of the environment, comparing the silhouette to the reference images to ensure that I was capturing the overall shape and proportions of the environment.
+I then added more detail to the environment, sculpting the stone shapes and adding cracks and chips.
 
 
 ## Shaders
 
+To create the shader for Mecha'Thun, I started by creating a library of SDF shapes that I could use to build up the different elements of the shader.
+I created several different SDF primitives/functions:
+- Circle
+- Ellipse
+- Rectangle
+- Vesica
+- Polygon
+- Chamfer Box
+- Annular Function
+- Anti Aliasing Function
+- Boolean Operations (Union, Subtract, Intersect)
+- Smooth Union
+
+I experimented with ways to create depth without using parallax occlusion mapping, as per the brief. I wanted the shader to be independent of the geometry and UVs, so I created a function using `Object Aligned Virtual Plane Coordinates` to add virtual UVs.
+For the virtual UVs, I needed 3 vectors:`Projection Normal`, `Projection Tangent`, and `Projection Bitangent`.
+I created a material parameter with a world space position and then subtracted the `Object Position`, normalised it, and converted it to local space, which gave me the `Projection Normal`. 
+To get the `Projection Bitangent`, I used an arbitrary vector and transformed it to local space, then used the `CreateThirdOrthogonalVector` function to get orthogonal vectors. 
+I then fed this into the `Object Aligned Virtual Plane Coordinates` function with a `Depth Value` that's multiplied by the `Object Scale` to get scale invariant virtual UVs that I could use to create the depth effect.
+I created a custom `Rodrigues Rotation` function to rotate the virtual UVs based on an external rotation input, which allowed me to create the effect of the iris being rotated.
+
+I created a reusable layer system for the shader, where I could stack different SDF shapes and effects on top of each other to create the different elements of the shader. 
+This allowed me to easily experiment with different combinations of shapes and effects to achieve the desired look for Mecha'Thun.
+This layer system has several inputs, including: `Colour`, `Fresnel Colour`, `Shadow Colour`, `Layer Depth`, `Layer Squeeze`, `Use Vesica`, `Use Chamfer Box`, `Use Block Noise`, `Use Line Noise`, `Invert Layer`, and `SDF Smooth Factor`.
+Also, I used the previous layer's UVs to create a shadow layer and projecting the current layer's SDF onto it. The function outputs the `Depth Map` of the current and previous layers, where I can use the final layer's output to generate depth-based effects.
+
+I created a separate `World Aligned UV` from the `Local Position` and `Dot` producting it with each of the `Projection Vectors`, then dividing it by the `Mesh Size` multiplied by the `Object Scale`.
+I used this `World Aligned UV`'s G channel to create a vertical gradient that I then multiplied and put through the `GeneratedBand` function to create the vertical banding effect on the shader, which added to the corrupted display look.
+
+For the vertical rising noise, I created a `Block Noise` function that uses a `Hash23` with a multiplied and floored UV to create a grid of noise, which I then added `Time` to make it move upwards. 
+
+To create the glitch effect, I created a set of moving `Frac`'d UVs that are overlaid on top of eachother to create the horizontal glitch lines and then uses a few different `Frac`'d `Time` values to offset the noises semi-randomly.
+These noises are then fed into the `World Position Offset` to create the glitchy distortion effect on the shader.
 
 
-## Experimentation
+### Custom Motion Vectors
+
+This shader makes heavy use of the new `Motion Vector World Offset (Per Pixel)` output in Unreal, which allows me to create custom motion vectors that include the distortion and noise from the shader, 
+giving me accurate motion blur and temporal anti-aliasing that helps to sell the effect and make it feel more integrated into the scene.
 
 
+To calculate the motion vectors, I rotated the vertex bitangent by the `Eye Direction` to get the `Base Motion Vector`, which gives me the correct motion vectors for the eye's rotation.
+From there, I multiplied the `Base Motion Vector` by the masks of the noise and glitch effects and a scalar to control the intensity, which gives me the motion vectors for the glitch distortion.
+
+For the environmental distortion, I created a set of vectors that point towards the center of the eye. To create this, I set the position of the eye as a vector parameter and then calculated the direction from the local position to the eye position, 
+which gives me a vector that points towards the eye. I added a falloff based on the distance from the eye and a global intensity which is set through the `Rage` Material Collection Parameter. 
+As well, I added another block noise to the motion vectors to create some digital distortion to the motion vectors, which adds to the corrupted display look.
+
+
+<M src="https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/mechathun/mechathun-envmvnodes.jpg" title="Mecha'Thun Motion Vector Nodes" caption="Mecha'Thun Motion Vector Nodes" aspectRatio="3/1"/>
+
+### Rage Mode
+
+I added a "Rage Mode" to the shader, which is activated by a Material Collection Parameter. When activated, it increases the intensity of the glitch effects, adds a red tint to the shader, makes the pupil dilate, and makes the environment's motion vectors point towards the eye.
+This adds a feeling of Mecha'Thun being enraged and losing control, unleashing more power but also becoming more unstable and glitchy.
+
+
+
+## Camera
+
+The camera in this project is an interesting one, it's a fisheye that is looking up at the character and distorting the environment and character which gives it a unique look and feel.
+
+Recreating this look in Unreal Engine was a fun challenge, as it required me to experiment with different camera settings and post-processing effects to achieve the desired look.
+
+
+I started off using a post process material to create the fisheye effect, but I found that since it was distorting the screen a lot, it was causing a dramatic resolution drop and making Mecha'Thun look very pixelated and low quality even when using 4x resolution.
+I then used this original lens distortion to render out a grid of the distortion so I could use it to map the distortion to real camera distortion coefficients. 
+
+In Blender, I set up a camera with the same focal length and sensor size as the Unreal Engine camera, and applied the distortion grid as a texture to the camera's lens. 
+Then I used Blender's camera calibration tools to adjust the camera's distortion parameters until the grid looked correct, 
+which gave me the K1, K2, K3, P1, and P2 values that I could then input into Unreal Engine's Lens Calibration.
+
+I created a custom lens in Unreal Engine using the obtained distortion coefficients, and set the mode to Scene Extension, which allowed the engine to render the scene with native camera distortion and resolution and then cropping the overscan.
 
 ## Environment
 
+For the ground of the environment, I modified a material in Substance Designer and exported 8K heightmaps and used that to physicalled displace geometry in Blender.
+I then cut off the bottom of the displaced geometry, leaving me with just the tiles, which I then arranged in front of Mecha'Thun to create a physically displaced ground that matches the aesthetic of the shader and the concept art. 
+I then used the rest of the tiling textures from Substance Designer to create a tiling ground material that I could use for the rest of the floor.
+
+
+I created an alpha of the wall rune shape in Photoshop, then converted that into an SDF and used that as a brush mask in Blender. I then used the brush to sculpt the rune shape into the walls. 
+As I wanted this to be a physical part of the geometry to catch the light and shadows, I didn't want to just use a normal map for this detail, so I retopologised the geometry manually and added a bevel modifier.
+
+I sculpted and retopologised the middle Archway piece to add some extra detail and make it feel more unique and less like a tiling asset. 
+I also added some extra details to the walls and ground to make them feel more worn and aged.
+
+
+For the pillars, I created a trimsheet in Substance Designer and then used that with Parallax Occlusion Mapping to add detail to the pillars without needing to add extra geometry, as the pillars are quite far from the camera and I wanted to save on performance.
+
+<M src="https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/mechathun/mechathun-designershapes.jpg" title="Mecha'Thun Pillar Shapes" caption="Mecha'Thun Pillar Shapes" aspectRatio="3/1"/>
 
 
 ## Lighting and Rendering
 
-
-
-## Tools
-
+For the lighting, I wanted to create a dramatic and moody atmosphere that would complement the shader and the concept art.
+I used HWRT (Hardware Ray Tracing) for the reflections and shadows, and volumetric fog to add atmospheric depth and make the light shafts more visible.
+I used a combination of point lights, spotlights, and rect lights to light the scene, and since this is a stylised scene, I wasn't too concerned about using physically accurate lighting, so I experimented with different diffuse and specular scales
+to achieve the desired look. I also added fake reflection cookies using a masked rect light.
 
 
 ## Outcome
+
+<M src="https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/mechathun/mechathun-current.jpg" title="Mecha'Thun Current WIP" caption="Mecha'Thun Current WIP" aspectRatio="204/100"/>

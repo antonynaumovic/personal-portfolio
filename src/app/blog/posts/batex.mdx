@@ -1,20 +1,20 @@
 ---
-title: "Batex Blender Addon"
+title: "BatEx Blender Addon"
 summary: "Blender addon for batch exporting FBX files"
 publishedAt: "2026-01-30"
 tag: "Tools, Python"
 priority: 1
-image: https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/batex/batex_export.jpg
+image: "https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/batex/Batex%2016-9.png"
 ---
 
-[GitHub Repository]("https://github.com/antonynaumovic/Batex" "Batex GitHub Repository")
+<ExternalLink href="https://github.com/antonynaumovic/Batex" title="BatEx GitHub Repository" alt="BatEx GitHub Repository Link" fillWidth/>
 
 ## Concept
-Batex was an existing <Hi>Blender</Hi> addon that I've been using for a while to batch export FBX files. 
+BatEx was an existing <Hi>Blender</Hi> addon that I've been using for a while to batch export FBX files. 
 However, it had some limitations and bugs that I wanted to address, so I decided to create my own version of the addon with improved functionality and a more user-friendly interface.
 
 
-The last update to the original Batex was in 2019, and it was built for older versions of Blender, so I wanted to update it to be compatible with the latest versions and add some new features that I found useful in my workflow.
+The last update to the original BatEx was in 2019, and it was built for older versions of Blender, so I wanted to update it to be compatible with the latest versions and add some new features that I found useful in my workflow.
 
 ## Planning
 
@@ -33,23 +33,24 @@ I also had to ensure that the addon used Blender's new Extensions system for reg
 
 ## Programming
 The addon is written in <Hi>Python</Hi>, using Blender's Python API to interact with the software and perform the batch export functionality.
-I implemented the new features and improvements based on my experience using the original Batex addon and the needs I had in my workflow when exporting assets from Blender to Unreal Engine.
+I implemented the new features and improvements based on my experience using the original BatEx addon and the needs I had in my workflow when exporting assets from Blender to Unreal Engine.
 I also added error handling and validation to ensure that the addon would work smoothly and provide feedback to the user if there were any issues during the export process.
 Since the FBX exporter can change in Blender updates, I implemented a system to check for the enums available in the current version of Blender and adjust the available options accordingly, 
 ensuring that the addon remains functional across different versions of Blender.
 
 ## Outcome
 
-The updated Batex addon is now available on <Hi>GitHub</Hi>, and it includes the new features and improvements that I set out to implement.
+The updated BatEx addon is now available on <Hi>GitHub</Hi>, and it includes the new features and improvements that I set out to implement.
 It has been tested in Blender 5 and is compatible with the latest versions of Blender
 
-<ExternalLink href="https://github.com/antonynaumovic/Batex" title="Batex GitHub Repository" alt="Batex GitHub Repository Link" fillWidth/>
 
 <Row gap="16">
     <Column>
-        <M src="https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/batex/batex_batch_interface.jpg" alt="Batex Batch Interface" title="Batex Batch Interface" caption="Batch Export Interface" fillHeight/>
+        <M src="https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/batex/batex_batch_interface.jpg" alt="BatEx Batch Interface" title="BatEx Batch Interface" caption="Batch Export Interface" fillHeight/>
     </Column>
     <Column>
-        <M src="https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/batex/batex_single_interface.jpg" alt="Batex Single Interface" title="Batex Single Interface" caption="Single Export Interface" fillHeight/>
+        <M src="https://fk8c5b0nfso0dhzm.public.blob.vercel-storage.com/projects/batex/batex_single_interface.jpg" alt="BatEx Single Interface" title="BatEx Single Interface" caption="Single Export Interface" fillHeight/>
     </Column>
 </Row>
+
+<ExternalLink href="https://github.com/antonynaumovic/Batex" title="BatEx GitHub Repository" alt="BatEx GitHub Repository Link" fillWidth/>

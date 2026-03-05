@@ -34,7 +34,6 @@ import {
   MasonryGrid,
   Carousel,
 } from "@once-ui-system/core";
-import { SerializeOptions } from "cookie";
 
 type CustomLinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
   href: string;
@@ -154,7 +153,7 @@ function createMedia({
           marginBottom="16"
           enlarge
           radius="m"
-          border="neutral-alpha-medium"
+          border="transparent"
           sizes="(max-width: 960px) 100vw, 960px"
           unoptimized
           alt={alt}
@@ -170,7 +169,7 @@ function createMedia({
               marginBottom="16"
               enlarge
               radius="m"
-              border="neutral-alpha-medium"
+              border="transparent"
               sizes="(max-width: 960px) 100vw, 960px"
               unoptimized
               alt={alt}
@@ -334,6 +333,10 @@ function createList({ children }: { children: ReactNode }) {
   return <List>{children}</List>;
 }
 
+function createOLList({ children }: { children: ReactNode }) {
+  return <List as="ol">{children}</List>;
+}
+
 function createListItem({ children }: { children: ReactNode }) {
   return (
     <ListItem marginTop="4" marginBottom="8" style={{ lineHeight: "175%" }}>
@@ -362,7 +365,7 @@ const components = {
   a: CustomLink as any,
   code: createInlineCode as any,
   pre: createCodeBlock as any,
-  ol: createList as any,
+  ol: createOLList as any,
   ul: createList as any,
   li: createListItem as any,
   hr: createHR as any,
@@ -389,6 +392,7 @@ const components = {
   Swiper,
   Scroller,
   Hi: createHighlight as any,
+  hi: createHighlight as any,
   MasonryGrid,
   MGM: createGridMedia as any,
   Carousel: createCarousel as any,

@@ -396,7 +396,6 @@ const components = {
 
 type CustomMDXProps = MDXRemoteProps & {
   components?: typeof components;
-  options?: SerializeOptions;
 };
 
 export function CustomMDX(props: CustomMDXProps) {
